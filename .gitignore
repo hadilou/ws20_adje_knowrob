@@ -1,0 +1,396 @@
+###############################
+#
+# Universal
+#
+###############################
+*.swp
+
+###############################
+#
+# Python
+#
+###############################
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+source/**/*.py[cod]
+source/**/*$py.class
+
+# C extensions
+source/**/*.so
+
+# Distribution / packaging
+source/**/.Python
+source/**/build/
+source/**/develop-eggs/
+source/**/dist/
+source/**/downloads/
+source/**/eggs/
+source/**/.eggs/
+source/**/lib/
+source/**/lib64/
+source/**/parts/
+source/**/sdist/
+source/**/var/
+source/**/wheels/
+source/**/share/python-wheels/
+source/**/*.egg-info/
+source/**/.installed.cfg
+source/**/*.egg
+source/**/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+source/**/*.manifest
+source/**/*.spec
+
+# Installer logs
+source/**/pip-log.txt
+source/**/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+source/**/htmlcov/
+source/**/.tox/
+source/**/.nox/
+source/**/.coverage
+source/**/.coverage.*
+source/**/.cache
+source/**/nosetests.xml
+source/**/coverage.xml
+source/**/*.cover
+source/**/.hypothesis/
+source/**/.pytest_cache/
+
+# Translations
+source/**/*.mo
+source/**/*.pot
+
+# Django stuff:
+source/**/*.log
+source/**/local_settings.py
+source/**/db.sqlite3
+
+# Flask stuff:
+source/**/instance/
+source/**/.webassets-cache
+
+# Scrapy stuff:
+source/**/.scrapy
+
+# Sphinx documentation
+source/**/docs/_build/
+
+# PyBuilder
+source/**/target/
+
+# Jupyter Notebook
+source/**/.ipynb_checkpoints
+
+# IPython
+source/**/profile_default/
+source/**/ipython_config.py
+
+# pyenv
+source/**/.python-version
+
+# celery beat schedule file
+source/**/celerybeat-schedule
+
+# SageMath parsed files
+source/**/*.sage.py
+
+# Environments
+source/**/.env
+source/**/.venv
+source/**/env/
+source/**/venv/
+source/**/ENV/
+source/**/env.bak/
+source/**/venv.bak/
+
+# Spyder project settings
+source/**/.spyderproject
+source/**/.spyproject
+
+# Rope project settings
+source/**/.ropeproject
+
+# mkdocs documentation
+source/**//site
+
+# mypy
+source/**/.mypy_cache/
+source/**/.dmypy.json
+source/**/dmypy.json
+
+# Pyre type checker
+source/**/.pyre/
+
+
+
+###############################
+#
+# LaTex
+#
+###############################
+
+## Core latex/pdflatex auxiliary files:
+doc/**/*.aux
+doc/**/*.lof
+doc/**/*.log
+doc/**/*.lot
+doc/**/*.fls
+doc/**/*.out
+doc/**/*.toc
+doc/**/*.fmt
+doc/**/*.fot
+doc/**/*.cb
+doc/**/*.cb2
+doc/**/*.lb
+
+## Intermediate documents:
+doc/**/*.dvi
+doc/**/*.xdv
+doc/**/*-converted-to.*
+# these rules might exclude image files for figures etc.
+# doc/**/*.ps
+# doc/**/*.eps
+# doc/**/*.pdf
+
+## Generated if empty string is given at "Please type another file name for output:"
+doc/**/*.pdf
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+doc/**/*.bbl
+doc/**/*.bcf
+doc/**/*.blg
+doc/**/*-blx.aux
+doc/**/*-blx.bib
+doc/**/*.run.xml
+
+## Build tool auxiliary files:
+doc/**/*.fdb_latexmk
+doc/**/*.synctex
+doc/**/*.synctex(busy)
+doc/**/*.synctex.gz
+doc/**/*.synctex.gz(busy)
+doc/**/*.pdfsync
+
+## Build tool directories for auxiliary files
+# latexrun
+latex.out/
+
+## Auxiliary and intermediate files from other packages:
+# algorithms
+doc/**/*.alg
+doc/**/*.loa
+
+# achemso
+acs-doc/**/*.bib
+
+# amsthm
+doc/**/*.thm
+
+# beamer
+doc/**/*.nav
+doc/**/*.pre
+doc/**/*.snm
+doc/**/*.vrb
+
+# changes
+doc/**/*.soc
+
+# comment
+doc/**/*.cut
+
+# cprotect
+doc/**/*.cpt
+
+# elsarticle (documentclass of Elsevier journals)
+doc/**/*.spl
+
+# endnotes
+doc/**/*.ent
+
+# fixme
+doc/**/*.lox
+
+# feynmf/feynmp
+doc/**/*.mf
+doc/**/*.mp
+doc/**/*.t[1-9]
+doc/**/*.t[1-9][0-9]
+doc/**/*.tfm
+
+#(r)(e)ledmac/(r)(e)ledpar
+doc/**/*.end
+doc/**/*.?end
+doc/**/*.[1-9]
+doc/**/*.[1-9][0-9]
+doc/**/*.[1-9][0-9][0-9]
+doc/**/*.[1-9]R
+doc/**/*.[1-9][0-9]R
+doc/**/*.[1-9][0-9][0-9]R
+doc/**/*.eledsec[1-9]
+doc/**/*.eledsec[1-9]R
+doc/**/*.eledsec[1-9][0-9]
+doc/**/*.eledsec[1-9][0-9]R
+doc/**/*.eledsec[1-9][0-9][0-9]
+doc/**/*.eledsec[1-9][0-9][0-9]R
+
+# glossaries
+doc/**/*.acn
+doc/**/*.acr
+doc/**/*.glg
+doc/**/*.glo
+doc/**/*.gls
+doc/**/*.glsdefs
+
+# gnuplottex
+doc/**/*-gnuplottex-*
+
+# gregoriotex
+doc/**/*.gaux
+doc/**/*.gtex
+
+# htlatex
+doc/**/*.4ct
+doc/**/*.4tc
+doc/**/*.idv
+doc/**/*.lg
+doc/**/*.trc
+doc/**/*.xref
+
+# hyperref
+doc/**/*.brf
+
+# knitr
+doc/**/*-concordance.tex
+# TODO Comment the next line if you want to keep your tikz graphics files
+doc/**/*.tikz
+doc/**/*-tikzDictionary
+
+# listings
+doc/**/*.lol
+
+# makeidx
+doc/**/*.idx
+doc/**/*.ilg
+doc/**/*.ind
+doc/**/*.ist
+
+# minitoc
+doc/**/*.maf
+doc/**/*.mlf
+doc/**/*.mlt
+doc/**/*.mtc[0-9]*
+doc/**/*.slf[0-9]*
+doc/**/*.slt[0-9]*
+doc/**/*.stc[0-9]*
+
+# minted
+_minted*
+doc/**/*.pyg
+
+# morewrites
+doc/**/*.mw
+
+# nomencl
+doc/**/*.nlg
+doc/**/*.nlo
+doc/**/*.nls
+
+# pax
+doc/**/*.pax
+
+# pdfpcnotes
+doc/**/*.pdfpc
+
+# sagetex
+doc/**/*.sagetex.sage
+doc/**/*.sagetex.py
+doc/**/*.sagetex.scmd
+
+# scrwfile
+doc/**/*.wrt
+
+# sympy
+doc/**/*.sout
+doc/**/*.sympy
+doc/**/sympy-plots-for-*.tex/
+
+# pdfcomment
+doc/**/*.upa
+doc/**/*.upb
+
+# pythontex
+doc/**/*.pytxcode
+doc/**/pythontex-files-*/
+
+# tcolorbox
+doc/**/*.listing
+
+# thmtools
+doc/**/*.loe
+
+# TikZ & PGF
+doc/**/*.dpth
+doc/**/*.md5
+doc/**/*.auxlock
+
+# todonotes
+doc/**/*.tdo
+
+# vhistory
+doc/**/*.hst
+doc/**/*.ver
+
+# easy-todo
+doc/**/*.lod
+
+# xcolor
+doc/**/*.xcp
+
+# xmpincl
+doc/**/*.xmpi
+
+# xindy
+doc/**/*.xdy
+
+# xypic precompiled matrices
+doc/**/*.xyc
+
+# endfloat
+doc/**/*.ttt
+doc/**/*.fff
+
+# Latexian
+doc/**/TSWLatexianTempdoc*
+
+## Editors:
+# WinEdt
+doc/**/*.bak
+doc/**/*.sav
+
+# Texpad
+.texpadtmp
+
+# LyX
+doc/**/*.lyx~
+
+# Kile
+doc/**/*.backup
+
+# KBibTeX
+doc/**/*~[0-9]*
+
+# auto folder when using emacs and auctex
+doc/**/./auto/*
+doc/**/*.el
+
+# expex forward references with \gathertags
+doc/**/*-tags.tex
+
+# standalone packages
+doc/**/*.sta

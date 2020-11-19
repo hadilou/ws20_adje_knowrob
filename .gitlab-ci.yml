@@ -1,0 +1,18 @@
+stages:
+  - compile_pdf
+
+compile_pdf:
+  stage: compile_pdf
+  image: 141.69.58.19:5000/iki/latex:latest 
+  script:
+    - cd doc/paper/ && latexmk -pdf Paper.tex
+  only:
+    changes:
+      - doc/paper/*
+  artifacts:
+    name: "Proposal"
+    expire_in: 4 weeks
+    when: on_success
+    name: "Paper.pdf"
+    paths:
+      - doc/paper/Paper.pdf
