@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for MESH in `find . -name "*.dae"`; do
+  echo $MESH
+  sed 's/.tif/.png/g' "$MESH" > "$MESH.new"
+  mv -v "$MESH.new" "$MESH"
+done

@@ -1,0 +1,175 @@
+#!/bin/bash
+
+bool=true
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+# Default options
+DNS="8.8.8.8" # google DNS
+
+for i in "$@"
+do
+case $i in
+    -d=*|--dns=*)
+    DNS="${i#*=}"
+    shift # past argument=value
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+echo "Using DNS server: $DNS"
+
+# runContainer - Creates docker containers if not existing
+#   arg1: <container_name> - String, Name of the container
+#   arg2: <docker_run_parameters> - String, Docker run parameters, excluding --name parameter
+#   arg3: (start_if_not_running) - Boolean, true if container should be started
+function runContainer {
+  RUNNING=$(docker inspect --format="{{ .State.Running }}" $1 2>/dev/null)
+  if [ $? -eq 1 ] || [ "$RUNNING" == '<no value>' ]; then # container does not exist
+    echo "No $1 container exists, creating a new one..."
+    bash -c "docker run --dns $DNS --name $1 $2"
+  fi
+  if [ "$3" == true ] && [ "$RUNNING" == 'false' ]; then # container exists, but stopped
+    echo "$1 container exists, starting it..."
+    docker start $1
+  fi
+}
+
+function stopContainer {
+  RUNNING=$(docker inspect --format="{{ .State.Running }}" $1 2>/dev/null)
+  if [ "$RUNNING" == 'true' ]; then # container does not exist
+    docker rm -f $1
+  fi
+  if [ "$RUNNING" == 'false' ]; then # container exists, but stopped
+    docker rm -f $1
+  fi
+}
+
+if [ -z "$KNOWROB_WEB_PORT" ]
+then
+   export KNOWROB_WEB_PORT=5000
+fi
+
+if [ "$1" == "debug" ]; then
+  EASE_DEBUG=true
+else
+  EASE_DEBUG=false
+fi
+
+# Stop all webapp containers
+IMAGES=`docker images | grep latest | grep -Eo '^[^ ]+' | grep -v "openease/easeapp" | grep -v "openease/flask"`
+for IMG in $IMAGES; do
+    X=`docker inspect --format="{{ .ContainerConfig.Env }}" $IMG | grep "OPEN_EASE_WEBAPP=true"`
+    if [ -n "$X" ]; then
+        NAME=`echo "$IMG" | cut -d "/" -f2`
+        stopContainer "$NAME"
+    fi
+done
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if user_data container exists and create otherwise
+runContainer "user_data" "knowrob/user_data true"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if mesh_data container exists and create otherwise
+runContainer "mesh_data" "-v /home/ros/mesh_data ubuntu chmod -R ugo+rw /home/ros/mesh_data"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if mongo_data container exists and create otherwise
+runContainer "mongo_data" "-v /data/db busybox true"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if mongo_db is running or stopped and start otherwise
+#runContainer "mongo_db" "-d -p 27017:27017 --volumes-from mongo_data mongo" true
+runContainer "mongo_db" "-d --volumes-from mongo_data mongo" true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#runContainer "ftp_data" "-v /home busybox true"
+#runContainer "ftpd_server" "-d --volumes-from ftp_data -p 21:21 openease/pure-ftpd" true
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+runContainer "lft_data" "-v /tmp/openEASE/dockerbridge busybox true"
+
+runContainer "episode_data" "-v $OPENEASE_EPISODE_DATA:/episodes -v /episodes busybox true"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if nginx is running or stopped and start otherwise
+runContainer "nginx" "-d -p 80:80 -p 443:443 -v /etc/nginx -v $DIR/../nginx-proxy/certs:/etc/nginx/certs -t nginx" true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if docker-gen is running or stopped and start otherwise
+runContainer "docker-gen" "-d --volumes-from nginx \
+	-v /var/run/docker.sock:/tmp/docker.sock \
+	-v $DIR/../nginx-proxy:/etc/docker-gen/templates \
+	-t jwilder/docker-gen -notify-sighup nginx -watch -only-published /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf" true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if user_db container exists and create otherwise
+runContainer "postgres_data" "-v /var/lib/postgresql/data knowrob/user_db true"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if postgres_db is running or stopped and start otherwise
+runContainer "postgres_db" "-d -e POSTGRES_USER=docker --volumes-from postgres_data knowrob/postgres" true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Stop any dockerbridge containers and re-create them to reflect changes to EASE_DEBUG immediately
+stopContainer "dockerbridge"
+runContainer "dockerbridge" "-d -v /var/run/docker.sock:/var/run/docker.sock -e EASE_DEBUG=$EASE_DEBUG knowrob/dockerbridge" true
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# start a container for the flask secret
+runContainer "ease_secret" "-v /etc/ease_secret busybox sh -c '< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c 64 > /etc/ease_secret/secret'"
+
+# Wait for the postgres port to be available
+echo "Waiting for postgres container..."
+until nc -z $(docker inspect --format='{{.NetworkSettings.IPAddress}}' postgres_db) 5432
+do
+    sleep 1
+done
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# start webrob container
+RUNNING=$(docker inspect --format="{{ .State.Running }}" flask 2>/dev/null)
+
+if [ "$RUNNING" == 'true' ]; then # container exists, and is running
+  echo "Web app container is running, stopping and removing it..."
+  docker stop flask && docker rm flask
+elif [ "$RUNNING" == 'false' ]; then # container exist
+  echo "Web app container exists, removing it..."
+  docker rm flask
+fi
+
+echo "Creating flask web app container..."
+docker run --rm -i -p 127.0.0.1:$KNOWROB_WEB_PORT:5000 \
+    --volumes-from mesh_data \
+    --volumes-from ease_secret:ro \
+    --volumes-from user_data \
+    --volumes-from episode_data \
+    --volumes-from lft_data \
+    --link postgres_db:postgres \
+    --link dockerbridge:dockerbridge \
+    --link mongo_db:mongo \
+    -e VIRTUAL_HOST=flask \
+    -e VIRTUAL_PORT=5000 \
+    -e EASE_DEBUG=$EASE_DEBUG \
+    -e OPENEASE_ADMIN_PASSWORD=$OPENEASE_ADMIN_PASSWORD \
+    -e OPENEASE_MAIL_USERNAME=$OPENEASE_MAIL_USERNAME \
+    -e OPENEASE_MAIL_PASSWORD=$OPENEASE_MAIL_PASSWORD \
+    -e OPENEASE_MESHES="$OPENEASE_MESHES" \
+    -e OPENEASE_ROS_DISTRIBUTION=$OPENEASE_ROS_DISTRIBUTION \
+    -e GITHUB_APP_ID=$GITHUB_APP_ID \
+    -e GITHUB_APP_SECRET=$GITHUB_APP_SECRET \
+    -e FACEBOOK_APP_SECRET=$FACEBOOK_APP_SECRET \
+    -e FACEBOOK_APP_ID=$FACEBOOK_APP_ID \
+    -e TWITTER_APP_ID=$TWITTER_APP_ID \
+    -e TWITTER_APP_SECRET=$TWITTER_APP_SECRET \
+    -e GOOGLE_APP_SECRET=$GOOGLE_APP_SECRET \
+    -e GOOGLE_APP_ID=$GOOGLE_APP_ID \
+    --name flask \
+    openease/flask python runserver.py

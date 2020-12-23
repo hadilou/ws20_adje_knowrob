@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# This script initializes a MongoDB container and fills it with test data.
+# By default, it imports the files tf.json and logged_designators.json from
+# the local folder or from the directory given as argument.
+#
+# Usage:
+# init-containers
+# init-containers <dirname>
+# 
+# (with the MongoDB .json files being in the same folder)
+# 
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# This is where the script (attempts to) get the path to roslog. This should
+# be given as a parameter to the script. If the parameter is missing, then
+# the script uses the current working directory path returned by pwd.
+
+MY_ROSLOG_PATH="$1"
+
+if [ -z "$1" ] ; then
+    # if no parameter given to the script, use the default (path to working directory)
+    # for MY_ROSLOG_PATH
+    MY_ROSLOG_PATH="`(pwd)`"
+fi
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if mongo_data container exists and create otherwise
+RUNNING=$(docker inspect --format="{{ .State.Running }}" mongo_data 2>/dev/null)
+
+if [ $? -eq 1 ]; then # container does not exist
+  echo "No mongo_data container exists, creating a new one..."
+  docker run -d -v /data/db --name mongo_data busybox true
+fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Check if mongo_db is running or stopped and start otherwise
+RUNNING=$(docker inspect --format="{{ .State.Running }}" mongo_db 2>/dev/null)
+
+if [ $? -eq 1 ]; then # container does not exist
+  echo "No MongoDB container exists, creating a new one..."
+  docker run -d -p 27017:27017 --volumes-from mongo_data --name mongo_db mongo
+fi
+
+if [ "$RUNNING" == 'false' ]; then # container exists, but stopped
+  echo "MongoDB container exists, starting it..."
+  docker start mongo_db
+fi
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# import the files
+#mongoimport --db roslog --collection tf "${MY_ROSLOG_PATH}/tf.json"
+#mongoimport --db roslog --collection logged_designators "${MY_ROSLOG_PATH}/logged_designators.json"
+
