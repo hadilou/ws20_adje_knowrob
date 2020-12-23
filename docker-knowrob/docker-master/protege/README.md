@@ -6,10 +6,9 @@ Desktop version Stanford Ontology IDE
 ###
 ## Components
     -Protege:
-        .Protege .x
+        .Protege 5.x
     -Base Components (e.g, Maven,Java.Python,NodeJS, etc.)
-        
-        . See [openkbs/jdk-mvn-py3](https://github.com/DrSnowbird/jdk-mvn-py3/blob/master/README.md#Components)
+    
     -X11 display desktop
 
 ## From dockerhub
@@ -17,7 +16,7 @@ Desktop version Stanford Ontology IDE
 ## Local image build
     docker build -t protege5_x -f Dockerfile .
 ## Run (Recommended for easy starting-up)
-This will setup all the neeeded host directory to ensure Protege configurations being persistent for nect run
+Once the container is up, this will setup all the neeeded host directory to ensure Protege configurations being persistent for nect run
 ###
     ./run.sh
 
