@@ -1,4 +1,4 @@
-FROM openease/kinetic-swi
+FROM kinetic-swi
 MAINTAINER  kaadje at ttu dot ee 
 
 # Initialize the catkin workspace
@@ -21,15 +21,14 @@ RUN git clone --recursive https://github.com/knowrob/knowrob.git -b kinetic && \
 RUN git clone https://github.com/knowrob/rosowl.git && \
     git clone https://github.com/mtenorth/knowrob_tutorials.git && \
     git clone https://github.com/knowrob/genowl.git && \
-    #git clone https://github.com/knowrob/knowrob_srdl.git -b kinetic && \
-    #git clone https://github.com/strands-project/mongodb_store.git -b kinetic-devel && \
+    git clone https://github.com/knowrob/knowrob_srdl.git -b kinetic && \
+    git clone https://github.com/strands-project/mongodb_store.git -b kinetic-devel && \
     
     git clone https://github.com/ease-crc/ease_ontology.git && \
     git clone https://github.com/ease-crc/dul.git && \
     
     git clone --recursive https://github.com/knowrob/knowrob_addons.git -b kinetic
     
-RUN git clone https://github.com/knowrob_maps -b kinetic 
     
 #pkgs with problems, patially remove for now.
 # RUN touch knowrob_addons/knowrob_learning/CATKIN_IGNORE
