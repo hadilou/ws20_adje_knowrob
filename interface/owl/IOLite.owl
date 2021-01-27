@@ -1,0 +1,1499 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#"
+     xml:base="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl"
+     xmlns:DUL="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:IOLite="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#">
+    <owl:Ontology rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl">
+        <owl:imports rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An ontology of information objects, encodings and realizations, as a plugin to DOLCE-Ultralite (reusing mainly the dul:expresses and dul:realizes relations from it). 
+Several patterns are contained inside this ontology:
+- encodings of information entities
+- kinds of realizations (gestural motions, depictions, digital, multimedia, speech, etc.)
+- combinatorial relations between information objects
+- relations between formal expressions and generalized expressions (lexicalizations, formalizations)
+- relations between formal expressions and their assignments in formal semantics
+- relations between information objects and schemata (data structures, KOS, etc.)
+- authorship
+- kinds of linguistic objects
+- copies, reproductions, etc.
+- cultural combination of information objects (reuse, mixing, metaphorical blending)</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Information Objects ontology</rdfs:label>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.8</owl:versionInfo>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">In 1.8, all object properties have been aligned to associatedWith, and some comments have been added.
+In 1.7, the encodes object property has been modified in order to support any kind of information entity (purely social object or realization), and to give justice to computer science pragmatic equivalence between information objects that are fully encoded for computing, and the actual bits travelling in a machine or network, based on that encoding. The realizes property has been consequenctly declared as a subproperty of encodes.
+Also removed redundant owl:someValuesFrom axioms
+In 1.6, broadened range of hasRepresentationLanguage
+In 1.5, some fixes added wrt to new plugins (Roles.owl, CollectionsLite.owl).
+In 1.4, all elements have got English labels. Added the class LinguisticAct, useful to relate Agent(s) when use information objects to express meaning with some CommunicativeFunction (from the theory by Jakobson). Moreover, the relation between formal patterns and information patterns have been enriched. Some bugs fixed.</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_342eb413_228f_4b89_ba8a_c2b368a5befe -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_342eb413_228f_4b89_ba8a_c2b368a5befe"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955 -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_b0a2a5d5_ac1f_4f9c_aac5_9aeb4b5bf6e9 -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_b0a2a5d5_ac1f_4f9c_aac5_9aeb4b5bf6e9"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4 -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_d76b26d8_b168_4b5f_85e5_4ba12c1e54a0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_d76b26d8_b168_4b5f_85e5_4ba12c1e54a0">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isAbout"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConceptualizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConceptualizedBy"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isReferenceOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isReferenceOf"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSettingFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSettingFor"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLObjectPropertyImpl_8111165b_246d_409e_a402_40d38126dbac -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLObjectPropertyImpl_8111165b_246d_409e_a402_40d38126dbac">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReproducedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:label xml:lang="en">reproduces</rdfs:label>
+        <rdfs:label xml:lang="it">riproduce</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLObjectPropertyImpl_90a71ded_0a04_40de_90b4_d5bc24f9d235 -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLObjectPropertyImpl_90a71ded_0a04_40de_90b4_d5bc24f9d235">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isLexicalizedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A relation between linguistic objects and other information objects (including other linguistic objects).
+For example, &apos;dog&apos; can lexicalize a picture of a dog, a linguistic description of a dog, or the logical class: &apos;Dog&apos;.
+This relation is a subPropertyOf encodes .
+In case of FormalExpression(s), it is not the inverse of isFormalTermFor: formal expressions can be said to &apos;be formal terms&apos; for a LinguisticObject(s), while, independently, linguistic objects can be said to &apos;lexicalize&apos; formal expressions. The difference is mainly pragmatic: one can take e.g. the word Dog, and decide to have a logical class &apos;Dog&apos; for it. Someone else can see the logical class &apos;Dog&apos;, and decide to lexicalize it with the words dog, chien, cane, etc. While the relation seems similar, the pragmatic of using them is very different.</rdfs:comment>
+        <rdfs:label xml:lang="it">lessicalizza</rdfs:label>
+        <rdfs:label xml:lang="en">lexicalizes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#combinatoriallyRelatedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#combinatoriallyRelatedTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#combinatoriallyRelatedTo"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any relation holding between two FormalExpression(s), e.g. a function over formal grammars, boolean operators, syntactic relations defined for the logical vocabulary of a formal language, etc.
+Syntactic relations from logical languages have a correspondance to some formal relation.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#digitallyReproduces -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#digitallyReproduces">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLObjectPropertyImpl_8111165b_246d_409e_a402_40d38126dbac"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isDigitallyReproducedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:label xml:lang="en">digitally reproduces</rdfs:label>
+        <rdfs:label xml:lang="it">riproduce digitalmente</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any relation between two information entities, with the first used as an alternative encoding of the second. This encoding can preserve all or part of the informational structure. For example, an XML encoding of a plain text file, a digital scanning of a physical paper document, a reproduction of a painting, etc.
+The encoding can be so precise and close to the medium of realization, that distinguishing the maximally encoded object from its realization is superfluous (as in many cases of computer science information entities). For this reason, the relation holds for either dul:InformationObject(s) or dul:InformationRealization(s).
+Since the relation holds for either dul:InformationObject(s) or dul:InformationRealization(s), dul:realizes is a subproperty of it.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#formallyRepresents -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#formallyRepresents">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isAbout"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormallyRepresentedIn"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between formal expressions, and anything that they are supposed to represent.
+E.g., &apos;the predicate &apos;MariachiInTijuana&apos; formallyRepresents the dul:Collection of all mariachis in Tijuana&apos;; &apos;the equivalence relation &apos;&lt;=&gt;&apos; formallyRepresents the Concept of two entities having the same properties&apos;, &apos;the constant &apos;John&apos; formallyRepresents the dul:NaturalPerson &apos;John&apos;.
+Notice that a FormalExpression isAssignmentOf (is formally interpreted by) instances of dul:FormalEntity.
+
+formallyRepresents is a particular case of &apos;dul:isAbout&apos;, holding only for formal expressions. 
+Anyway, a formal expression that  dul:expresses a dul:SocialObject is also possible, but treats formal expressions as any other kind of dul:InformationObject that express a &apos;social&apos; or &apos;cognitive&apos; semantics, not a formal one.</rdfs:comment>
+        <rdfs:label xml:lang="en">formally represents</rdfs:label>
+        <rdfs:label xml:lang="it">rappresenta formalmente</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasAuthor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasAuthor">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAuthorOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_1691548e_3a32_4822_8510_6386ac6f08ed"/>
+        <rdfs:label xml:lang="it">ha come autore</rdfs:label>
+        <rdfs:label xml:lang="en">has author</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalGrounding -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalGrounding">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCulturalGroundingFor"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:label xml:lang="it">ha sorgente culturale</rdfs:label>
+        <rdfs:label xml:lang="en">has cultural grounding</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalMixingWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalMixingWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasCulturalMixingWith"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:label xml:lang="it">ha una fusione culturale con</rdfs:label>
+        <rdfs:label xml:lang="en">has cultural mixing with</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasFormalTerm -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasFormalTerm">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormalTermFor"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between an InformationObject and a FormalExpression (constant, formula, term, sentence, proposition, axiom, etc.) that it is supposed to be given formal interpretation to formalize the InformationObject.
+Notice that FormalExpression(s) only are formal terms for InformationObject(s), not for Concept(s) or other for SocialObject(s). On their turn, information object can &apos;express&apos; (see) SocialObject(s).
+E.g., the predicate (FormalExpression) &apos;TijuanaMariachi&apos; isFormalTermFor the Term &apos;the mariachis in Tijuana&apos; (that expresses the Collection of all mariachis in Tijuana); the Term &apos;equivalence relation&apos; (that expresses the Concept of &apos;two entities having the same properties&apos;) hasFormalTerm the &apos;&lt;=&gt;&apos; symbol.</rdfs:comment>
+        <rdfs:label xml:lang="it">ha termine formale</rdfs:label>
+        <rdfs:label xml:lang="en">has formal term</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasGrounding -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasGrounding">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isGroundingFor"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:comment>A formal entity is grounded in some other entity when it is assumed as the (formal, extensional) interpretation of it, for example, the set Dog can be grounded in the collection of all actual dogs (or in some of them that the modeller intends).</rdfs:comment>
+        <rdfs:label xml:lang="en">has grounding</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasRepresentationLanguage -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasRepresentationLanguage">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isRepresentationLanguageOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1"/>
+        <rdfs:label xml:lang="it">ha linguaggio di rappresentazione</rdfs:label>
+        <rdfs:label xml:lang="en">has representation language</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasSchema -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasSchema">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isSchemaOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A relation between social objects and schemata that organize them. For example, a Tag hasSchema a Folksonomy, a Lexeme hasSchema a Lexicon, etc.</rdfs:comment>
+        <rdfs:label xml:lang="it">ha schema</rdfs:label>
+        <rdfs:label xml:lang="en">has schema</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignedTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormallyRepresentedIn"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignmentOf"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between a FormalExpression, and an Entity (a FormalEntity in case of classes, relations, etc.) that it is supposed to be the reference of the symbol (FormalExpression) that the Entity is an intepretation of. 
+In other words, this is the &apos;formal interpretation&apos; function, by which a logician &apos;assigns&apos; an Entity to a FormalExpression.
+For each type of formal expressions defined in a logical language, an assignment assumption should be indicated, for example, owl:Class should be restricted to: isAssignmentOf allValuesFrom Class. In addition, differently from the general relation formallyRepresents, isAssignmentOf is functional (and its inverse is inverse functional), in order to encode the Tarskian correspondence assumption.
+E.g., the Set of &apos;all mariachis in Tijuana&apos; isAssignedTo the predicate (FormalExpression) &apos;TijuanaMariachi&apos; (that isFormalTermFor a Term e.g. &apos;the mariachis in Tijuana&apos;).</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">formally interprets {@en}</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">interpreta formalmente {@it}</rdfs:label>
+        <rdfs:label xml:lang="it">è assegnata a</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignmentOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignmentOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#formallyRepresents"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between a FormalExpression, and an Entity (a FormalEntity in case of classes, relations, etc.) that it is supposed to be the reference of the symbol (FormalExpression) that the Entity is an intepretation of. 
+In other words, this property expresses the &apos;formal interpretation&apos; function, by which a logician &apos;assigns&apos; an Entity to a FormalExpression. 
+For each type of formal expressions defined in a logical language, an assignment assumption should be indicated, for example, owl:Class should be restricted to: isAssignmentOf allValuesFrom Class. In addition, differently from the general relation formallyRepresents, isAssignmentOf is functional (and its inverse is inverse functional), in order to encode the Tarskian correspondence assumption.
+E.g., the Set of &apos;all mariachis in Tijuana&apos; isAssignedTo the predicate (FormalExpression) &apos;TijuanaMariachi&apos; (that isFormalTermFor a Term e.g. &apos;the mariachis in Tijuana&apos;).</rdfs:comment>
+        <rdfs:label xml:lang="en">is formally interpreted as</rdfs:label>
+        <rdfs:label xml:lang="it">è assegnazione di</rdfs:label>
+        <rdfs:label xml:lang="it">è interpretata formalmente come</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAuthorOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAuthorOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_1691548e_3a32_4822_8510_6386ac6f08ed"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:label xml:lang="en">is author of</rdfs:label>
+        <rdfs:label xml:lang="it">è autore di</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCopyOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCopyOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isOriginalOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The original information realization of some copy. Differently from reproductions, copies are not planned to have notable differences from the original. Master copies, author-signed paintings, etc. are examples of originals.</rdfs:comment>
+        <rdfs:label xml:lang="en">is copy of</rdfs:label>
+        <rdfs:label xml:lang="it">è copia di</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCulturalGroundingFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isCulturalGroundingFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:label xml:lang="en">is cultural grounding for</rdfs:label>
+        <rdfs:label xml:lang="it">è una sorgente culturale per</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isDigitallyReproducedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isDigitallyReproducedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReproducedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+        <rdfs:label xml:lang="en">is digitally reproduced by</rdfs:label>
+        <rdfs:label xml:lang="it">è digitalmente riprodotto da</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any relation between two information entities, with the first used as an alternative encoding of the second. This encoding can preserve all or part of the informational structure. For example, an XML encoding of a plain text file, a digital scanning of a physical paper document, a reproduction of a painting, etc.
+The encoding can be so precise and close to the medium of realization, that distinguishing the maximally encoded object from its realization is superfluous (as in many cases of computer science information entities). For this reason, the relation holds for either dul:InformationObject(s) or dul:InformationRealization(s).
+Since the relation holds for either dul:InformationObject(s) or dul:InformationRealization(s), dul:realizes is a subproperty of it.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormalTermFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormalTermFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#encodes"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between an InformationObject and a FormalExpression (constant, formula, term, sentence, proposition, axiom, etc.) that it is supposed to be given formal interpretation to formalize the InformationObject.
+Notice that FormalExpression(s) only are formal terms for InformationObject(s), not for Concept(s) or for other SocialObject(s). On their turn, information object can &apos;express&apos; (see) SocialObject(s).
+E.g., the predicate (FormalExpression) &apos;TijuanaMariachi&apos; isFormalTermFor the Term &apos;the mariachis in Tijuana&apos; (that expresses the Collection of all mariachis in Tijuana); the Term &apos;equivalence relation&apos; (that expresses the Concept of &apos;two entities having the same properties&apos;) hasFormalTerm the &apos;&lt;=&gt;&apos; symbol.</rdfs:comment>
+        <rdfs:label xml:lang="en">is formal term for</rdfs:label>
+        <rdfs:label xml:lang="it">è termine formale per</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormallyRepresentedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormallyRepresentedIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isReferenceOf"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The relation between formal expressions, and anything that they are supposed to represent.
+E.g., &apos;the predicate &apos;MariachiInTijuana&apos; formallyRepresents the dul:Collection of all mariachis in Tijuana&apos;; &apos;the equivalence relation &apos;&lt;=&gt;&apos; formallyRepresents the concept of two entities having the same properties&apos;, &apos;the constant &apos;John&apos; formallyRepresents the dul:NaturalPerson John.
+Notice that formal expressions are formally interpreted by instances of dul:FormalEntity</rdfs:comment>
+        <rdfs:label xml:lang="en">is formally represented in</rdfs:label>
+        <rdfs:label xml:lang="it">è rappresentato formalmente in</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isGroundingFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isGroundingFor">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity"/>
+        <rdfs:label xml:lang="en">is grounding for</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isLexicalizedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isLexicalizedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isExpressedBy"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A relation between linguistic objects and other information objects (including other linguistic objects).
+For example, &apos;dog&apos; can lexicalize a picture of a dog, a linguistic description of a dog, or the logical class: &apos;Dog&apos;.
+This relation is a subPropertyOf encodes .
+In case of FormalExpression(s), it is not the inverse of isFormalTermFor: formal expressions can be said to &apos;be formal terms&apos; for a LinguisticObject(s), while, independently, linguistic objects can be said to &apos;lexicalize&apos; formal expressions. The difference is mainly pragmatic: one can take e.g. the word Dog, and decide to have a logical class &apos;Dog&apos; for it. Someone else can see the logical class &apos;Dog&apos;, and decide to lexicalize it with the words dog, chien, cane, etc. While the relation seems similar, the pragmatic of using them is very different.</rdfs:comment>
+        <rdfs:label xml:lang="en">is lexicalized by</rdfs:label>
+        <rdfs:label xml:lang="it">è lessicalizzato da</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isOriginalOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isOriginalOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:label xml:lang="en">is original of</rdfs:label>
+        <rdfs:label xml:lang="it">è l&apos;originale di</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isRepresentationLanguageOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isRepresentationLanguageOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:label xml:lang="en">is representation language of</rdfs:label>
+        <rdfs:label xml:lang="it">è il linguaggio di rappresentazione di</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReproducedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReproducedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isEncodedBy"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:label xml:lang="en">is reproduced by</rdfs:label>
+        <rdfs:label xml:lang="it">è riprodotto da</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReusedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isReusedBy">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#reuses"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isSchemaOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isSchemaOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A relation between social objects and schemata that organize them. For example, a Tag hasSchema a Folksonomy, a Lexeme hasSchema a Lexicon, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">is schema of</rdfs:label>
+        <rdfs:label xml:lang="it">è schema di</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#metaphoricallyBlendsWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#metaphoricallyBlendsWith">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <owl:inverseOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#metaphoricallyBlendsWith"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+        <rdfs:comment>This property can be used to relate two social objects that are associated by means of a metaphorical blending, e.g. Greek and Aegyptian sphinges.</rdfs:comment>
+        <rdfs:label xml:lang="it">fusoMetaforicamenteCon</rdfs:label>
+        <rdfs:label xml:lang="en">metaphorically blends with</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#reuses -->
+
+    <owl:ObjectProperty rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#reuses">
+        <rdfs:subPropertyOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_415632db_d44d_45c2_a52e_203234ad9955"/>
+        <rdfs:domain rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:range rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any relation between information entities, where the first one reuses (includes, transforms, reengineers, etc.) the second one.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FormalEntity">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isAssignedTo"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_021ba42c_6fc6_41c3_8452_c2d603c7acdf -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_021ba42c_6fc6_41c3_8452_c2d603c7acdf"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_1691548e_3a32_4822_8510_6386ac6f08ed -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_1691548e_3a32_4822_8510_6386ac6f08ed"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_343e63b7_c36b_4792_8fc5_5273a0fc5b78 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_343e63b7_c36b_4792_8fc5_5273a0fc5b78"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_527efa29_39dd_4130_9f3f_b193f6c8dc4c -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_527efa29_39dd_4130_9f3f_b193f6c8dc4c"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_83b77e8b_6149_462f_92a2_86189f6a003b -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_83b77e8b_6149_462f_92a2_86189f6a003b"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_84e2d7e0_abf3_4e5d_b835_8436f6291f35 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_84e2d7e0_abf3_4e5d_b835_8436f6291f35"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_915603c5_7cc0_4546_958f_ebcab537c5a7 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_915603c5_7cc0_4546_958f_ebcab537c5a7"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_a637ae26_2d1b_4a59_8a2c_e3f537a9c4c4 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_a637ae26_2d1b_4a59_8a2c_e3f537a9c4c4"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_b9ec574f_5568_46d7_aeca_066ec15594d2 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_b9ec574f_5568_46d7_aeca_066ec15594d2"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_f3d6ee7f_08d9_47c5_b217_5f00156eba99 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_f3d6ee7f_08d9_47c5_b217_5f00156eba99"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalArtifact -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalArtifact"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PlanExecution -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PlanExecution"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#BodilyMotion -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#BodilyMotion">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_f3d6ee7f_08d9_47c5_b217_5f00156eba99"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization consisting of bodily movements.</rdfs:comment>
+        <rdfs:label xml:lang="en">Bodily motion</rdfs:label>
+        <rdfs:label xml:lang="it">Movimento corporeo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#CommunicativeFunction -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#CommunicativeFunction">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_021ba42c_6fc6_41c3_8452_c2d603c7acdf"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The functions, e.g. defined by Jakobson and by Buhler, which define types of linguistic acts. Jakobson&apos;s ones include referential, conative, expressive, phatic, metalinguistic, poetic. Each function has typical roles and tasks that must be played during a linguistic act that achieves the function.</rdfs:comment>
+        <rdfs:label xml:lang="en">Communicative function</rdfs:label>
+        <rdfs:label xml:lang="it">Funzione comunicativa</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#ContractText -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#ContractText">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e1495dc6_3633_41fe_8351_474b046b1ad6"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_915603c5_7cc0_4546_958f_ebcab537c5a7"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The text of a contract</rdfs:comment>
+        <rdfs:label xml:lang="en">Contract text</rdfs:label>
+        <rdfs:label xml:lang="it">Testo di un contratto</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DBSchema -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DBSchema">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any conceptual, logical or physical schema for a database.</rdfs:comment>
+        <rdfs:label xml:lang="en">Database schema</rdfs:label>
+        <rdfs:label xml:lang="it">Schema di base di dati</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any data structure, including databases, schemas, lexica, knowledge organizations systems, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">Data structure</rdfs:label>
+        <rdfs:label xml:lang="it">Struttura di dati</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalPhoto -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalPhoto">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+        <rdfs:label xml:lang="en">Digital photo</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any resource that can be computed, e.g. a file, a piece of (implemented) software. This assumes an encoding allowing the computation (e.g. html+http protocol).</rdfs:comment>
+        <rdfs:label xml:lang="en">Digital resource</rdfs:label>
+        <rdfs:label xml:lang="it">Risorsa digitale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasRepresentationLanguage"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#isFormalTermFor"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any information object represented in a FormalLanguage, usually having a formal interpretation by a dul:FormalEntity, and used to formally represent any Entity</rdfs:comment>
+        <rdfs:label xml:lang="it">Espressione formale</rdfs:label>
+        <rdfs:label xml:lang="en">Formal expression</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalLanguage -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#FormalExpression"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A formal language, created by some human, with a fixed grammar, and usually with an explicit formal semantics (i.e. any FormalExpression that is a wff or a valid element of a FormalLanguage has an interpretation wrt to formal entities such as sets, categories, etc.).</rdfs:comment>
+        <rdfs:label xml:lang="en">Formal language</rdfs:label>
+        <rdfs:label xml:lang="it">Linguaggio formale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#GraphicArt -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#GraphicArt">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: The arts of drawing or painting or printmaking</rdfs:comment>
+        <rdfs:label xml:lang="en">Graphic art</rdfs:label>
+        <rdfs:label xml:lang="it">Opera grafica</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicLanguage -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A language made up of graphical elements. It can be natural, artificial, and even formal.</rdfs:comment>
+        <rdfs:label xml:lang="en">Iconic language</rdfs:label>
+        <rdfs:label xml:lang="it">Linguaggio iconico</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicObject">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasRepresentationLanguage"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#IconicLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information object represented in an IconicLanguage</rdfs:comment>
+        <rdfs:label xml:lang="en">Iconic object</rdfs:label>
+        <rdfs:label xml:lang="it">Oggetto iconico</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DataStructure"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knowledge Organization Systems: thesauri, terminologies, classification schemes, subject hierarchies, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">Knowledge organization system</rdfs:label>
+        <rdfs:label xml:lang="it">Sistema di organizzazione della conoscenza</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticAct -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticAct">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PlanExecution"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_342eb413_228f_4b89_ba8a_c2b368a5befe"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#CommunicativeFunction"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_1691548e_3a32_4822_8510_6386ac6f08ed"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#includesObject"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSettingFor"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isSettingFor"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">5</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_831c0484_f7c8_4324_b92a_ae6fd4fc7e34"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A communicative situation including linguistic objects, agents, and a set of contexts: physical (informational realizations), conceptual (social objects), and referential (entities).
+A linguistic act has an associated CommunicativeFunction that it satisfies.</rdfs:comment>
+        <rdfs:label xml:lang="it">Atto linguistico</rdfs:label>
+        <rdfs:label xml:lang="en">Linguistic act</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticFunction -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticFunction">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_a637ae26_2d1b_4a59_8a2c_e3f537a9c4c4"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isDefinedIn"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticTheory"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any linguistic function that classifies words according to a LinguisticTheory. 
+This class includes parts of speech, thematic roles, phrase structure components, verbal aspects, etc. e.g. Subject, Object, Instrument, Stative, etc.
+Each linguistic function must be defined in a LinguisticTheory; e.g. a thematic role can be defined either in a generative grammar, or in construction-based theory.</rdfs:comment>
+        <rdfs:label xml:lang="it">Funzione linguistica</rdfs:label>
+        <rdfs:label xml:lang="en">Linguistic function</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasRepresentationLanguage"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#NaturalLanguage"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information object represented in a NaturalLanguage</rdfs:comment>
+        <rdfs:label xml:lang="en">Linguistic object</rdfs:label>
+        <rdfs:label xml:lang="it">Oggetto linguistico</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticTheory -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticTheory">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_343e63b7_c36b_4792_8fc5_5273a0fc5b78"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_b0a2a5d5_ac1f_4f9c_aac5_9aeb4b5bf6e9"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+                        <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#NaturalLanguage"/>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any theory describing the structure and/or production and understanding of a natural language or a set of natural languages, or a component of one or more natural languages.</rdfs:comment>
+        <rdfs:label xml:lang="en">Linguistic theory</rdfs:label>
+        <rdfs:label xml:lang="it">Teoria linguistica</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#MultimediaObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#MultimediaObject">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_d76b26d8_b168_4b5f_85e5_4ba12c1e54a0"/>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization that realizes heterogeneous information objects. Examples include audiovisual performances, web pages, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">Multimedia object</rdfs:label>
+        <rdfs:label xml:lang="it">Oggetto multimediale</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Multiword -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Multiword">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A LinguisticObject made up of more than one Word, but distinct from a Phrase, which is a higher syntactic unit.</rdfs:comment>
+        <rdfs:label xml:lang="it">Lemma polirematico</rdfs:label>
+        <rdfs:label xml:lang="en">Polyrhematic unit</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#NaturalLanguage -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#NaturalLanguage">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isConceptualizedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_84e2d7e0_abf3_4e5d_b835_8436f6291f35"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A natural language, evolved and used in a community across time.
+Natural languages components are &apos;temporary&apos; and &apos;reconstructed&apos; out of actual usage. For example, a grammar for a (part of a) natural language has the status of a theory for that language, but alternative ones can exist (e.g. generative vs. construction grammars).</rdfs:comment>
+        <rdfs:label xml:lang="it">Linguaggio naturale</rdfs:label>
+        <rdfs:label xml:lang="en">Natural language</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0143b877_221f_49a6_80f0_d719b39ebed3 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0143b877_221f_49a6_80f0_d719b39ebed3">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_3b80e814_896b_4be5_9c8b_3ab43961f5e8"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A part of a word as it can be realized by Writing
+A spoken information realization can be &apos;about&apos; a grapheme (as in reading), but it does not &apos;realize&apos; it. Only Phoneme(s) are realized by spoken information (Voicing).
+BTW, since spoken realizations are a &apos;primary&apos; code of communication, the difference between direct and indirect spoken realizations (reading) should be considered relevant.
+A grapheme is not necessarily able to express a meaning (a dul:SocialObject), although it can in principle (e.g. &apos;a&apos; in English).</rdfs:comment>
+        <rdfs:label xml:lang="it">Grafema</rdfs:label>
+        <rdfs:label xml:lang="en">Grapheme</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_042d9520_84ef_4848_b37b_31f6331350a4 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_042d9520_84ef_4848_b37b_31f6331350a4">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Multiword"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasSchema"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A word or multiword that is established in some terminology from a domain of discourse.</rdfs:comment>
+        <rdfs:label xml:lang="en">Term</rdfs:label>
+        <rdfs:label xml:lang="it">Termine</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0a8e15e7_0031_4385_beaa_e806d112d6bb -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0a8e15e7_0031_4385_beaa_e806d112d6bb">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: A representation of forms or objects on a surface by means of lines; &quot;drawings of abstract forms&quot;; &quot;he did complicated pen-and-ink drawings like medieval miniatures&quot;</rdfs:comment>
+        <rdfs:label xml:lang="it">Disegno</rdfs:label>
+        <rdfs:label xml:lang="en">Drawing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0d4afe4c_4130_46a9_849c_5d46c1e4edbc -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_0d4afe4c_4130_46a9_849c_5d46c1e4edbc">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A collection of categories organized according to a specified syntax, typically used to create a controlled terminology in a domain. A useful rdfs encoding of a typical thesaurus syntax is the SKOS schema.</rdfs:comment>
+        <rdfs:label xml:lang="it">Tesauro</rdfs:label>
+        <rdfs:label xml:lang="en">Thesaurus</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_1230157d_00c3_4213_b1b1_6feb886a08a1">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_83b77e8b_6149_462f_92a2_86189f6a003b"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A natural or artificial language, provided with an alphabet (or vocabulary) and combinatorial rules. In the case of natural languages, their components are &apos;temporary&apos; and &apos;reconstructed&apos; out of actual usage. For example, a grammar for a natural language has the status of a theory for that language, and alternative ones can exist (e.g. generative vs. construction grammars).
+Another distinction, between the general (systemic) rules for a language, and the local (contextual) rules for e.g. a certain context, speaker, place, etc., can be made separately.
+The most comprehensive classification of languages ha probably been made by Umberto Eco, based on the production modes of the &apos;signs&apos; that are represented in a certain language. It uses several semiotic dimensions, and will be modeled in a forthcoming ontology.</rdfs:comment>
+        <rdfs:label xml:lang="en">Language</rdfs:label>
+        <rdfs:label xml:lang="it">Linguaggio</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_2a648b8e_5386_4cc3_b5d0_ca13bc668921 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_2a648b8e_5386_4cc3_b5d0_ca13bc668921">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any piece of information expressing computational operations, objects, markup, etc.</rdfs:comment>
+        <rdfs:label xml:lang="en">Code</rdfs:label>
+        <rdfs:label xml:lang="it">Codice</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_346d94b5_d886_45c5_9ae1_039be75cf15b -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_346d94b5_d886_45c5_9ae1_039be75cf15b">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b599db88_a77a_49f5_857f_f70ec346b4b9"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: A sculpture representing a human or animal</rdfs:comment>
+        <rdfs:label xml:lang="it">Statua</rdfs:label>
+        <rdfs:label xml:lang="en">Statue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_3b80e814_896b_4be5_9c8b_3ab43961f5e8 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_3b80e814_896b_4be5_9c8b_3ab43961f5e8">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_d76b26d8_b168_4b5f_85e5_4ba12c1e54a0"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization based on conventional symbols.
+It is a secondary code of communication (secondary means that it is about an original bodily expression, i.e. a primary code). Therefore, we are not considering here early forms of iconic expression, which could be considered primary.</rdfs:comment>
+        <rdfs:label xml:lang="it">Realizzazione scritta</rdfs:label>
+        <rdfs:label xml:lang="en">Writing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalArtifact"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization consisting of depicted images/signs of any sort (e.g. graffiti, drawings, inscriptions, pictures, sculptures, etc.), which are inscripted on a medium that lasts longer than the depicting act.
+It also includes any early form of inscripted iconic expression, which can be considered as original bodily expressions.</rdfs:comment>
+        <rdfs:label xml:lang="en">Depiction</rdfs:label>
+        <rdfs:label xml:lang="it">Realizzazione visiva</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_68408751_8450_4a77_a4c0_ef3e4fcfdc12 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_68408751_8450_4a77_a4c0_ef3e4fcfdc12">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b0d70317_9109_4872_8ad9_f61d32a414ec"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A part of a word as it can be realized by Voicing
+A written information realization can be &apos;about&apos; a phoneme (as in the case of transcription systems), but it does not &apos;realize&apos; it: only Grapheme(s) are realized by written information (Writing).
+A phoneme is not necessarily able to express a meaning (any dul:SocialObject), although it can in principle (e.g. &apos;a&apos; in English).</rdfs:comment>
+        <rdfs:label xml:lang="it">Fonema</rdfs:label>
+        <rdfs:label xml:lang="en">Phoneme</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_7163d5f2_ff07_4ada_8a07_54649270a3e7 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_7163d5f2_ff07_4ada_8a07_54649270a3e7">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_527efa29_39dd_4130_9f3f_b193f6c8dc4c"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e972d855_7efb_4413_82cc_9d47026cd03a"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A composition of Phrase(s), assumed to express a state of affairs (here modelled as a dul:Situation). Graphically, a period is usually considered its boundary.</rdfs:comment>
+        <rdfs:label xml:lang="it">Frase</rdfs:label>
+        <rdfs:label xml:lang="en">Sentence</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_79a9dcc8_821a_4fec_a206_6e64843ae13f -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_79a9dcc8_821a_4fec_a206_6e64843ae13f">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#KOS"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A collection of lexical items (terms, entries, ...) that are witnessed to have a linguistic relevance.</rdfs:comment>
+        <rdfs:label xml:lang="it">Lessico</rdfs:label>
+        <rdfs:label xml:lang="en">Lexicon</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_884b3700_2eec_498b_9dc2_e18c7ee8296e -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_884b3700_2eec_498b_9dc2_e18c7ee8296e">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#BodilyMotion"/>
+        <rdfs:label xml:lang="it">Gesto</rdfs:label>
+        <rdfs:label xml:lang="en">Gesture</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_954dc253_c99a_4426_97b5_e808e726d973 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_954dc253_c99a_4426_97b5_e808e726d973">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_c81e8eed_0e26_46cd_88f5_45fd30b813d4"/>
+                <owl:someValuesFrom>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+                        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+                    </owl:Restriction>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A part of a word that can express a meaning, which is part of the meaning of the entire word.</rdfs:comment>
+        <rdfs:label xml:lang="it">Morfema</rdfs:label>
+        <rdfs:label xml:lang="en">Morpheme</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b0d70317_9109_4872_8ad9_f61d32a414ec -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b0d70317_9109_4872_8ad9_f61d32a414ec">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_df4d37e3_ee74_4a8d_942e_9c105ab3db30"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasParticipant"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization consisting of uttered sounds. In natural agents, it always co-occurs with bodily movements.</rdfs:comment>
+        <rdfs:label xml:lang="it">Vocalizzazione</rdfs:label>
+        <rdfs:label xml:lang="en">Voicing</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b599db88_a77a_49f5_857f_f70ec346b4b9 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b599db88_a77a_49f5_857f_f70ec346b4b9">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#PlasticArt"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: A three-dimensional work of plastic art</rdfs:comment>
+        <rdfs:label xml:lang="en">Sculpture</rdfs:label>
+        <rdfs:label xml:lang="it">Scultura</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_c8e13dec_4313_4994_af8c_306d7f9c45a0 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_c8e13dec_4313_4994_af8c_306d7f9c45a0">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationRealization"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_b0d70317_9109_4872_8ad9_f61d32a414ec"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLObjectPropertyImpl_d76b26d8_b168_4b5f_85e5_4ba12c1e54a0"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conventional sounds realizing explicit communication. Speech is a primary code of communication (primary means that is an original body expression, especially if first learnt).</rdfs:comment>
+        <rdfs:label xml:lang="it">Discorso</rdfs:label>
+        <rdfs:label xml:lang="en">Speech</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_d92be8dd_5988_4629_8c31_385e5a1a6545 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_d92be8dd_5988_4629_8c31_385e5a1a6545">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">From WordNet: &apos;an item of factual information derived from measurement or research&apos;</rdfs:comment>
+        <rdfs:label xml:lang="it">Dato</rdfs:label>
+        <rdfs:label xml:lang="en">Datum</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_df4d37e3_ee74_4a8d_942e_9c105ab3db30 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_df4d37e3_ee74_4a8d_942e_9c105ab3db30">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#OWLClassImpl_b9ec574f_5568_46d7_aeca_066ec15594d2"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An information realization consisting of sound waves.</rdfs:comment>
+        <rdfs:label xml:lang="en">Sound</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e1495dc6_3633_41fe_8351_474b046b1ad6 -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e1495dc6_3633_41fe_8351_474b046b1ad6">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_7163d5f2_ff07_4ada_8a07_54649270a3e7"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isRealizedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_3b80e814_896b_4be5_9c8b_3ab43961f5e8"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A LinguisticObject composed of at least one Sentence, and assumed to be realized in written form.</rdfs:comment>
+        <rdfs:label xml:lang="it">Testo</rdfs:label>
+        <rdfs:label xml:lang="en">Text</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A linguistic object consisting of a string (independently of its physical realization).
+Its topological unity can change according to its physical realization: as a written realization, its boundaries are blank spaces, as a spoken realization, sometimes is silence, sometimes not, and higher order features intervene.
+Grammatical notions, such as noun, verb, adjective, etc., are roles defined by a grammar, and words (or larger linguistic objects) can play those roles in a given language. E.g., the word &apos;share&apos; can play both &apos;verb&apos; and &apos;noun&apos; roles in contemporary English, while the word &apos;come&apos; can only play the &apos;verb&apos; role in English, and the &apos;adverb&apos; or &apos;conjunction&apos; roles in Italian (but if we consider a word as only realized by phonemes, i.e. if we consider the oral realizations of &apos;come&apos;, there is no common word &apos;come&apos; in the two languages).</rdfs:comment>
+        <rdfs:label xml:lang="it">Parola</rdfs:label>
+        <rdfs:label xml:lang="en">Word</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e972d855_7efb_4413_82cc_9d47026cd03a -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e972d855_7efb_4413_82cc_9d47026cd03a">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#LinguisticObject"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasComponent"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isComponentOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_7163d5f2_ff07_4ada_8a07_54649270a3e7"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A composition of Word(s) that can be considered a higher syntactic unit than a Word, and dul:isComponentOf a Sentence</rdfs:comment>
+        <rdfs:label xml:lang="en">Phrase</rdfs:label>
+        <rdfs:label xml:lang="it">Proposizione</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_fa66616a_2131_4e31_a770_33deda0272bd -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_fa66616a_2131_4e31_a770_33deda0272bd">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#GraphicArt"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: Graphic art consisting of an artistic composition made by applying paints to a surface; &quot;a small painting by Picasso&quot;; &quot;he bought the painting as an investment&quot;; &quot;his pictures hang in the Louvre&quot;</rdfs:comment>
+        <rdfs:label xml:lang="it">Dipinto</rdfs:label>
+        <rdfs:label xml:lang="en">Painting</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_fc563ce7_42ad_41cb_b04d_46955bd90d6d -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_fc563ce7_42ad_41cb_b04d_46955bd90d6d">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_042d9520_84ef_4848_b37b_31f6331350a4"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#Multiword"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_e4748c18_3c9c_4244_ad1d_8e1164bdc8bd"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#hasSchema"/>
+                <owl:someValuesFrom rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_79a9dcc8_821a_4fec_a206_6e64843ae13f"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lexical entries for dictionaries, lexica, etc. They are used to create reference forms of words.</rdfs:comment>
+        <rdfs:label xml:lang="it">Lessema</rdfs:label>
+        <rdfs:label xml:lang="en">Lexeme</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#PlasticArt -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#PlasticArt">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#OWLClassImpl_4b53730b_c481_4c3c_9bff_18ee7bed551a"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wn noun: The arts of shaping or modeling; carving and sculpture</rdfs:comment>
+        <rdfs:label xml:lang="it">Opera plastica</rdfs:label>
+        <rdfs:label xml:lang="en">Plastic art</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#WebPage -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#WebPage">
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#DigitalResource"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/IOLite.owl#MultimediaObject"/>
+        <rdfs:label xml:lang="en">Web page</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="http://www.w3.org/2002/07/owl#Thing"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
