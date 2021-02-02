@@ -56,9 +56,13 @@ Using _Owlready2_ , only modifications made on the ontology in Python are saved.
 Spatial reasoning provide the robot the ability to know the semantics locations of objects around him.
 
 top: (_Obj1 top Obj2_ ) if object1 is on top of object 2
+
 inside: (_Obj1 in Obj2_) if object1 is inside object 2
+
 leftTo : (_Obj1 left Obj2_)
+
 rightTO : (_Obj1 right Obj2_)
+
 
 ## Reachability  
 
