@@ -1,6 +1,6 @@
 # Ontology
 
-The ontology is based on the core ontologies used in KnowRob: SOMA,DUL,SRDL. Those are added as references in the folder.
+The ontology is inspired from the core ontologies used in KnowRob: SOMA,DUL,SRDL. Those are added as references in the folder.
 
 The reason is that working on constructing an ontology definition for modelling objects and tasks is time consuming and require full knowledge of the objects, robots,tasks and interactions.
 

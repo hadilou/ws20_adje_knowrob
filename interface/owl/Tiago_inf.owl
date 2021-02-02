@@ -1,0 +1,375 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="/root/catkin_ws/src/interface/owl/Tiago.owl"
+         xmlns="/root/catkin_ws/src/interface/owl/Tiago.owl#"
+         xmlns:Tiag="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#">
+
+<owl:Ontology rdf:about="/root/catkin_ws/src/interface/owl/Tiago.owl"/>
+
+<owl:ObjectProperty rdf:about="#has_grasp_region">
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="#DPose"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_plan_for">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Plan"/>
+  <rdfs:range rdf:resource="#Grasping"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_plan_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Grasping"/>
+  <rdfs:range rdf:resource="#Plan"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_participant">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Plan"/>
+  <rdfs:range rdf:resource="#Object"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_participant_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="#Plan"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_surface">
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="#Surface"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#part_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#BodyPart"/>
+  <rdfs:range rdf:resource="#Robot"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#base_link_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="#BodyPart"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#end_link_of">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:range rdf:resource="#BodyPart"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#has_height">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_width">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_lenght">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hold_pose_x">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hold_pose_y">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hold_pose_z">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_spatial_location">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_reachable">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_available">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Object"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_payload">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Arm"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_reach">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Arm"/>
+  <rdfs:domain rdf:resource="#Finger"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_Lift">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#LiftTorso"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_max_speed">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#LiftTorso"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Robot">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#base_link_of"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#end_link_of"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#tiago_1">
+  <rdfs:subClassOf rdf:resource="#Robot"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#base_link_of"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#end_link_of"/>
+      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Object">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Can">
+  <rdfs:subClassOf rdf:resource="#Object"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Table">
+  <rdfs:subClassOf rdf:resource="#Object"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DPose">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SpatialLocation">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Surface">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Grasping">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Plan">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BodyPart">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Arm">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Finger">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Gripper">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#LiftTorso">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MobileBase">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Head">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Wheels">
+  <rdfs:subClassOf rdf:resource="#BodyPart"/>
+</owl:Class>
+
+<Table rdf:about="#table_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7349968237227471</has_height>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-3.55106</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">can_1 top table_1</has_spatial_location>
+</Table>
+
+<Can rdf:about="#can_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.4342812026073197</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.574479043583859</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7349968237227471</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">can_1 top table_1</has_spatial_location>
+</Can>
+
+<Arm rdf:about="#tiago_1_arm">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1"/>
+  <has_payload rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.0</has_payload>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.87</has_reach>
+</Arm>
+
+<Gripper rdf:about="#tiago_1_gripper">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1"/>
+</Gripper>
+
+<Finger rdf:about="#tiago_1_finger_R">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1_gripper"/>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.044</has_reach>
+</Finger>
+
+<Finger rdf:about="#tiago_1_finger_L">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1_gripper"/>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.044</has_reach>
+</Finger>
+
+<LiftTorso rdf:about="#tiago_1_torso">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1"/>
+</LiftTorso>
+
+<MobileBase rdf:about="#tiago_1_base">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.019624804806454337</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0076880775257815405</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0010873095709225677</hold_pose_z>
+  <has_max_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</has_max_speed>
+</MobileBase>
+
+<Head rdf:about="#tiago_1_head">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</Head>
+
+<BodyPart rdf:about="#tiago_1_cam">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago_1_head"/>
+</BodyPart>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Table">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Can">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+</rdf:Description>
+
+<Tiag:Robot rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1"/>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#LiftTorso">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Wheels">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#MobileBase">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Gripper">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Head">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Arm">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_arm">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
+</Tiag:Arm>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_finger_R">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
+</Tiag:Arm>
+
+<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_torso"/>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_finger_L">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
+</Tiag:Arm>
+
+<Tiag:Head rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_head">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot"/>
+</Tiag:Head>
+
+<Tiag:Can rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#can_1"/>
+
+<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_base">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#MobileBase"/>
+</Tiag:LiftTorso>
+
+<Tiag:Table rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#table_1"/>
+
+<Tiag:BodyPart rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_cam"/>
+
+<Tiag:Gripper rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_gripper">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot"/>
+</Tiag:Gripper>
+
+
+</rdf:RDF>

@@ -1,20 +1,42 @@
 #!/usr/bin/env python3
-
-#ontologiey related
 from owlready2 import *
+import math
+
+def get_pose_of_model(gz_model_obj,model_name):
+    """
+    Retrieves the position of an object from Gazebo world
+    """
+    pose_now = gz_model_obj.get_model_pose(model_name)
+
+    return pose_now
+
+def to_cm(number) -> float:
+    return number*100
 
 
-class Pose():
-    def __init__(x,y,z):
-        self.x = x
-        self.y = y
-        self.z = z 
+def print_stats(onto):
+    """
+    Some stats about the ontology
+    """
+    print("\n\n############# Some Stats about the OWL ontolology #############\n")
+    print("\n\nOntology IRI:",format(onto.base_iri))
+    print("\n\n Classes in Ontology:")
+    for cls in onto.classes():
+        print(cls)
+    print("\n\nIndiduals in Ontology:")
+    for indi in onto.individuals():
+        print(indi)
+    print("\n\n Object Properties of Ontology:")
+    for prop in onto.object_properties():
+        print(prop)
+    print("\n\n Data Properties of Ontology:")
+    for prop in onto.data_properties():
+        print(prop)
 
-    def update(self,x=None,y=none,z=0)
-        if x:self.x=x
-        if y:self.y=y
-        if z:self.z=z
-    
-    def get(self):
-        return (self.x,self.y,self.z)
-
+def assert_onto(onto):
+        #uses java vm
+        with self.onto:
+            print("/n/Starting OWL Reasoner")
+            sync_reasoner()
+def distance(x1,y1,z1,x2,y2,z2) -> float:
+    return math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2 + (z1 - z2) ** 2)
