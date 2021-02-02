@@ -1,10 +1,11 @@
-# NOTICE
-This repository should not contain more than 100MB.
-This README contains only a template at the moment.
+# Ontology based approach for knowledge processing for robots using
 
-# Title
-- One short paragraph as repository description
-- Should contain the basic functionalities
+Contains 
+
+    - ontology for modelling Tiago robot, grasping task
+
+    - spatial reasoning mechanisms
+
 
 ## Getting started
 - How to get the code of the repository up and running
@@ -22,9 +23,7 @@ This README contains only a template at the moment.
 - E.g. in the object recognition repository list the kinect2 node
 
 ## Authors
-- List all participants
-- Add to each participant what they are responsible for
-- E.g.: Max Musterman - _Initial work_ - [Link to gitlab user (@...)]
+- Max Musterman @ka-201668
 
 ## License
 What license is applied to this repository in case of open sourcing.
