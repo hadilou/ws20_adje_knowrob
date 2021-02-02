@@ -23,7 +23,7 @@ Contains
 - E.g. in the object recognition repository list the kinect2 node
 
 ## Authors
-- Max Musterman @ka-201668
+- Kayode @ka-201668
 
 ## License
 What license is applied to this repository in case of open sourcing.
