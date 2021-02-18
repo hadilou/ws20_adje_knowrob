@@ -16,7 +16,7 @@ ENV ROS_IP 127.0.0.1
 
 
 
-MAINTAINER kayode dot hadilou dot adje at rwu dot de
+MAINTAINER kadeyoadje@gmail.com
 
 # set shell
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -39,16 +39,13 @@ RUN pip3 install rospkg
 RUN pip3 install Owlready2
 RUN pip3 install PyYAML
 
-# RUN wget https://raw.githubusercontent.com/pal-robotics/tiago_tutorials/kinetic-devel/tiago_public-$ROS_DISTRO.rosinstall
-# RUN chmod +x tiago_public-$ROS_DISTRO.rosinstall
-# RUN rosinstall src /opt/ros/${ROS_DISTRO} tiago_public-$ROS_DISTRO.rosinstall
-# RUN rm tiago_public-$ROS_DISTRO.rosinstall
 
 RUN rosdep update
 
 WORKDIR /root/catkin_ws/src/
 
 RUN git clone git@fbe-gitlab.hs-weingarten.de:stud-iki/prj-master/ws20_adje_knowrob.git
+RUN rm -rf ws20_adje_knowrob/docker
 
 WORKDIR /root/catkin_ws
 
