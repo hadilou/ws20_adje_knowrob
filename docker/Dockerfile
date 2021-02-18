@@ -27,10 +27,18 @@ WORKDIR /root/catkin_ws
 
 RUN apt-get clean
 
+
+
 RUN apt-get update --fix-missing -y && \
 	apt-get upgrade -y && \
-    apt-get install -y ros-$ROS_DISTRO-urdf
+    apt-get install -y ros-$ROS_DISTRO-urdf &&\
+	apt-get install -y python3-pip &&\
+	apt-get install -y openjdk-8-jre
     
+RUN pip3 install rospkg
+RUN pip3 install Owlready2
+RUN pip3 install PyYAML
+
 # RUN wget https://raw.githubusercontent.com/pal-robotics/tiago_tutorials/kinetic-devel/tiago_public-$ROS_DISTRO.rosinstall
 # RUN chmod +x tiago_public-$ROS_DISTRO.rosinstall
 # RUN rosinstall src /opt/ros/${ROS_DISTRO} tiago_public-$ROS_DISTRO.rosinstall
@@ -41,8 +49,6 @@ RUN rosdep update
 WORKDIR /root/catkin_ws/src/
 
 RUN git clone git@fbe-gitlab.hs-weingarten.de:stud-iki/prj-master/ws20_adje_knowrob.git
-RUN git clone -b melodic-devel https://github.com/ros-planning/srdfdom.git
-
 
 WORKDIR /root/catkin_ws
 
@@ -53,8 +59,10 @@ RUN source /opt/ros/$ROS_DISTRO/setup.bash && \
 
 WORKDIR /root/catkin_ws/src/ws20_adje_knowrob
 
-#pip3
-#owlready2
+##pip3
+##java run time
+
+#Owlready2
 #yaml
 #roskpg
-#java run time
+
