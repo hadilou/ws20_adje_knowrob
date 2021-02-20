@@ -6,6 +6,13 @@ from get_model import *
 
 from utils import *
 
+import roslib
+roslib.load_manifest('joint_states_listener')
+import rospy
+from joint_states_listener.srv import ReturnJointStates
+import time
+import sys
+
 TOP_CST = 10 # in cm
 SIDE_CST = 30 #in cm
 
@@ -78,6 +85,27 @@ with new_onto:
     #lass base_link_of(Thing >> BodyPart, TransitiveProperty): pass
     #lass end_link_of(Thing >> BodyPart, TransitiveProperty): pass
 
+    class Joint(PhysicalObject):pass
+    class Link(PhysicalObject):pass
+    class has_base_link(DataProperty,FunctionalProperty):
+        domain = [Link]
+        range = [str]
+    class has_child_link(DataProperty,FunctionalProperty):
+        domain = [Link]
+        range = [str]
+    
+    class State(Thing):pass
+    class Time(State):pass
+    class has_joint(ObjectProperty):
+        domain = [State]
+        range = [Joint]
+    class Velocity(State):pass
+    class Acceleration(State):pass
+    class Effort(State):pass 
+    
+
+
+
     class has_height(DataProperty,FunctionalProperty):
         domain = [Object]
         range = [float]
@@ -140,11 +168,11 @@ with new_onto:
         range = [BodyPart]
         inverse_property = is_participant_of
     class is_movement_of(ObjectProperty):
-        domain = [Movement]
+        domain = [State]
         range = [Action]
     class has_movement(ObjectProperty):
         domain = [Action]
-        range = [Movement]
+        range = [State]
         inverse_property = is_movement_of
 
     class of_bodypart(ObjectProperty):
@@ -269,7 +297,22 @@ class SpatialReasoner():
             return True
         return False
         
+def call_return_joint_states(joint_names):
+    rospy.wait_for_service("return_joint_states")
+    try:
+        s = rospy.ServiceProxy("return_joint_states", ReturnJointStates)
+        resp = s(joint_names)
+    except rospy.ServiceException as e:
+        print ("Error when calling return_joint_states: %s"%e)
+        sys.exit(1)
+    for (ind, joint_name) in enumerate(joint_names):
+        if(not resp.found[ind]):
+            print ("joint %s not found!"%joint_name)
+    return (joint_name,resp.position, resp.velocity, resp.effort)
 
+#pretty-print list to string
+def pplist(list):
+    return ' '.join(['%2.3f'%x for x in list])
 
 #creating instances
 tiago = Tiago("tiago_1")
@@ -292,7 +335,7 @@ model_to_track_list = ["table1"]
 #listening to gazebo model states topic
 rospy.init_node('listener', anonymous=True)
 # coke_can_slim  kitchen_table  pringles 
-models = ["coke_can_slim","kitchen_table","pringles","tiago"]
+models = ["tiago"]
 gz_model = GazeboModel(models)
 
 poses = {}
@@ -327,6 +370,24 @@ if  ready:
     table.has_spatial_location = sr.spatialSituation(table,can)
     print(can.has_spatial_location)
 
+#populating ontology with joint's states
+joint_names = ["arm_1_joint",
+                "arm_2_joint",
+                "arm_3_joint",
+                "arm_4_joint",
+                "arm_7_joint",
+                "arm_5_joint",
+                "gripper_right_finger_joint"]
+
+while(1):
+    for joint_name in joint_names:
+        (name,position, velocity, effort) = call_return_joint_states([joint_name])
+        print ("Joint name:",name)
+        print ("position:", pplist(position))
+        print ("velocity:", pplist(velocity))
+        print ("effort:", pplist(effort))
+        time.sleep(1)
+        print("---")
 
 # auto-classify and save the ontology(only modifications made in python here are saved)
 with new_onto:
