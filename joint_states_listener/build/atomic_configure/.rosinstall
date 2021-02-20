@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /root/catkin_ws/src/joint_states_listener/build/devel/setup.sh
