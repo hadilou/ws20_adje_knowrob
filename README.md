@@ -1,29 +1,33 @@
-# Ontology based approach for knowledge processing for robots using
+# Title
 
-Contains 
+Knowlegde processing for robots using ontologies.
 
-    - ontology for modelling Tiago robot, grasping task
+Contains:
 
-    - spatial reasoning mechanisms
+    - Ontology for modeling Tiago, the used-case scene and the pick up place
 
+    - Showcase of how to use the ontology with sample queries
 
 ## Getting started
-- How to get the code of the repository up and running
+    
+    docker-compose -f docker/docker-compose.yaml up
 
 ## External dependencies
-- List external frameworks and projects
-- Add link to source code
+- [Tiago Tutorials](http://wiki.ros.org/Robots/TIAGo/Tutorials) used for pick-up and place scenario
+
+- [Protege](protege/) for visualising the inferred ontology
 
 ## Build dependencies
-- Link to Dockerfile is sufficient
-- If there is no Dockerfile, list the dependencies here
+- [Dockerfile](docker/Dockerfile)
 
 ## Run dependencies
-- What other stuff needs to run on the system
-- E.g. in the object recognition repository list the kinect2 node
+
+- [Tiago pick up demo](http://wiki.ros.org/Robots/TIAGo/Tutorials/MoveIt/Pick_place) from Tiago Tutorials, use [this world](worlds/sim_world.xml) as world file in gazebo
+
+- [Joint states listener service](joint_states_listener/nodes/joint_states_listener.py)
 
 ## Authors
-- Kayode @ka-201668
+- @ka201668
 
 ## License
 What license is applied to this repository in case of open sourcing.
