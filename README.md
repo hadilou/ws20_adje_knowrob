@@ -22,7 +22,7 @@ Contains:
 
 ## Run dependencies
 
-- [Tiago pick up demo](http://wiki.ros.org/Robots/TIAGo/Tutorials/MoveIt/Pick_place) from Tiago Tutorials, use [this world](worlds/sim_world.xml) as world file in gazebo
+- [Tiago pick up demo](http://wiki.ros.org/Robots/TIAGo/Tutorials/MoveIt/Pick_place) from Tiago Tutorials, use [this world](interface/worlds/sim_world.xml) as world file in gazebo
 
 - [Joint states listener service](joint_states_listener/nodes/joint_states_listener.py)
 
