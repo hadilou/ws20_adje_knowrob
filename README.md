@@ -1,4 +1,4 @@
-# Title
+# WS20_ADJE_KNOWROB
 
 Knowlegde processing for robots using ontologies.
 
@@ -27,7 +27,7 @@ Contains:
 - [Joint states listener service](joint_states_listener/nodes/joint_states_listener.py)
 
 ## Authors
-- @ka201668
+- Kayode @ka20@ka-201668
 
 ## License
 What license is applied to this repository in case of open sourcing.
