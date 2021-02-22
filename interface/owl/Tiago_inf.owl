@@ -9,33 +9,84 @@
 
 <owl:Ontology rdf:about="/root/catkin_ws/src/interface/owl/Tiago.owl"/>
 
+<owl:ObjectProperty rdf:about="#part_of">
+  <rdfs:domain rdf:resource="#PhysicalObject"/>
+  <rdfs:range rdf:resource="#BodyPart"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_joint">
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="#Joint"/>
+</owl:ObjectProperty>
+
 <owl:ObjectProperty rdf:about="#has_grasp_region">
   <rdfs:domain rdf:resource="#Object"/>
   <rdfs:range rdf:resource="#DPose"/>
 </owl:ObjectProperty>
 
-<owl:ObjectProperty rdf:about="#is_plan_for">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="#Plan"/>
-  <rdfs:range rdf:resource="#Grasping"/>
-</owl:ObjectProperty>
-
-<owl:ObjectProperty rdf:about="#is_plan_of">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="#Grasping"/>
-  <rdfs:range rdf:resource="#Plan"/>
-</owl:ObjectProperty>
-
-<owl:ObjectProperty rdf:about="#has_participant">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="#Plan"/>
+<owl:ObjectProperty rdf:about="#has_goal">
+  <rdfs:domain rdf:resource="#Action"/>
   <rdfs:range rdf:resource="#Object"/>
 </owl:ObjectProperty>
 
+<owl:ObjectProperty rdf:about="#is_trajectory_of">
+  <rdfs:domain rdf:resource="#Trajectory"/>
+  <rdfs:range rdf:resource="#Action"/>
+  <owl:inverseOf rdf:resource="#has_trajectory"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_trajectory">
+  <rdfs:domain rdf:resource="#Action"/>
+  <rdfs:range rdf:resource="#Trajectory"/>
+  <owl:inverseOf rdf:resource="#is_trajectory_of"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#affords">
+  <rdfs:domain rdf:resource="#Robot"/>
+  <rdfs:range rdf:resource="#Action"/>
+  <owl:inverseOf rdf:resource="#is_afforded_by"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_afforded_by">
+  <rdfs:domain rdf:resource="#Action"/>
+  <rdfs:range rdf:resource="#Robot"/>
+  <owl:inverseOf rdf:resource="#affords"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_used_by">
+  <rdfs:domain rdf:resource="#GraspForce"/>
+  <rdfs:range rdf:resource="#Action"/>
+  <owl:inverseOf rdf:resource="#uses"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#uses">
+  <rdfs:domain rdf:resource="#Action"/>
+  <rdfs:range rdf:resource="#GraspForce"/>
+  <owl:inverseOf rdf:resource="#is_used_by"/>
+</owl:ObjectProperty>
+
 <owl:ObjectProperty rdf:about="#is_participant_of">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="#Object"/>
-  <rdfs:range rdf:resource="#Plan"/>
+  <rdfs:domain rdf:resource="#Joint"/>
+  <rdfs:range rdf:resource="#Action"/>
+  <owl:inverseOf rdf:resource="#has_participant"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_participant">
+  <rdfs:domain rdf:resource="#Action"/>
+  <rdfs:range rdf:resource="#Joint"/>
+  <owl:inverseOf rdf:resource="#is_participant_of"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#is_movement_of">
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="#Action"/>
+  <owl:inverseOf rdf:resource="#has_movement"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_movement">
+  <rdfs:domain rdf:resource="#Action"/>
+  <rdfs:range rdf:resource="#State"/>
+  <owl:inverseOf rdf:resource="#is_movement_of"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#has_surface">
@@ -43,23 +94,41 @@
   <rdfs:range rdf:resource="#Surface"/>
 </owl:ObjectProperty>
 
-<owl:ObjectProperty rdf:about="#part_of">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="#BodyPart"/>
-  <rdfs:range rdf:resource="#Robot"/>
-</owl:ObjectProperty>
+<owl:DatatypeProperty rdf:about="#has_parent_link">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Joint"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
 
-<owl:ObjectProperty rdf:about="#base_link_of">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="#BodyPart"/>
-</owl:ObjectProperty>
+<owl:DatatypeProperty rdf:about="#has_child_link">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Joint"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
 
-<owl:ObjectProperty rdf:about="#end_link_of">
-  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:range rdf:resource="#BodyPart"/>
-</owl:ObjectProperty>
+<owl:DatatypeProperty rdf:about="#has_velocity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_position">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_acceleration">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#has_effort">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#State"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#has_height">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
@@ -140,40 +209,34 @@
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
 </owl:DatatypeProperty>
 
-<owl:Class rdf:about="#Robot">
+<owl:Class rdf:about="#PhysicalObject">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#base_link_of"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdfs:subClassOf>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#end_link_of"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any physical object or agent, capable of performing an action or not</rdfs:comment>
 </owl:Class>
 
-<owl:Class rdf:about="#tiago_1">
+<owl:Class rdf:about="#Robot">
+  <rdfs:subClassOf rdf:resource="#PhysicalObject"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any physical agent, capable of performing an action</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Geometric">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geometric data structures</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Manipulation">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Manipulation concept</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Tiago">
   <rdfs:subClassOf rdf:resource="#Robot"/>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#base_link_of"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdfs:subClassOf>
-  <rdfs:subClassOf>
-    <owl:Restriction>
-      <owl:onProperty rdf:resource="#end_link_of"/>
-      <owl:allValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Nothing"/>
-    </owl:Restriction>
-  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tiago robot from pal robotics http://wiki.ros.org/Robots/TIAGo</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#Object">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#PhysicalObject"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Any object that can not perform an action like table, can , etc.</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#Can">
@@ -184,28 +247,9 @@
   <rdfs:subClassOf rdf:resource="#Object"/>
 </owl:Class>
 
-<owl:Class rdf:about="#DPose">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#SpatialLocation">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#Surface">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#Grasping">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#Plan">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
 <owl:Class rdf:about="#BodyPart">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#PhysicalObject"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A component or part of a robot such as arm,head,..etc</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#Arm">
@@ -236,93 +280,750 @@
   <rdfs:subClassOf rdf:resource="#BodyPart"/>
 </owl:Class>
 
-<Table rdf:about="#table_1">
+<owl:Class rdf:about="#Action">
+  <rdfs:subClassOf rdf:resource="#Manipulation"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A manipulation task simplied as an action</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Trajectory">
+  <rdfs:subClassOf rdf:resource="#Manipulation"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trajectory followed durinfg a task, example of trajectory generated by Moveit</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#GraspForce">
+  <rdfs:subClassOf rdf:resource="#Manipulation"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Movement">
+  <rdfs:subClassOf rdf:resource="#Manipulation"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Movement of a part during a manipulation task</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DPose">
+  <rdfs:subClassOf rdf:resource="#Geometric"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3d pose object</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SpatialLocation">
+  <rdfs:subClassOf rdf:resource="#Geometric"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial location of an object w.r.t another object in natural language</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Joint">
+  <rdfs:subClassOf rdf:resource="#PhysicalObject"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Link">
+  <rdfs:subClassOf rdf:resource="#PhysicalObject"/>
+</owl:Class>
+
+<owl:Class rdf:about="#State">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Surface">
+  <rdfs:subClassOf rdf:resource="#Geometric"/>
+</owl:Class>
+
+<Tiago rdf:about="#tiago">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7349968237227471</has_height>
-  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</hold_pose_x>
-  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-3.55106</hold_pose_y>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.017598435645913013</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5185229219568</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.11430977672257925</hold_pose_z>
+</Tiago>
+
+<Table rdf:about="#table1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">81.50042941630385</has_height>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">88.0</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hold_pose_y>
   <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hold_pose_z>
-  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">can_1 top table_1</has_spatial_location>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cocacola top table1</has_spatial_location>
 </Table>
 
-<Can rdf:about="#can_1">
+<Can rdf:about="#cocacola">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.4342812026073197</hold_pose_x>
-  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.574479043583859</hold_pose_y>
-  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7349968237227471</hold_pose_z>
-  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">can_1 top table_1</has_spatial_location>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">90.54389743552666</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.361599487799642</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">81.50042941630385</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cocacola top table1</has_spatial_location>
 </Can>
 
-<Arm rdf:about="#tiago_1_arm">
+<Object rdf:about="#aruco_cube">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">53.00115253100407</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-4.996258165356798</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">86.4358273641373</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">aruco_cube top table1</has_spatial_location>
+  <is_reachable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</is_reachable>
+</Object>
+
+<Object rdf:about="#tv">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-124.78899999999999</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">235.14499999999998</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.13799999999999</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tv top bookshelf</has_spatial_location>
+</Object>
+
+<Object rdf:about="#lamp">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-147.776</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">226.54399999999998</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.34</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tv right lamp</has_spatial_location>
+</Object>
+
+<Object rdf:about="#bookshelf">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.13799999999999</has_height>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-100.806</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">268.194</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hold_pose_z>
+</Object>
+
+<Object rdf:about="#closet">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">200</has_height>
+  <has_width rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">80.0</has_width>
+  <has_lenght rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</has_lenght>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">316.789</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">86.3407</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</hold_pose_z>
+</Object>
+
+<Object rdf:about="#pringles">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_height rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</has_height>
+  <has_width rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</has_width>
+  <has_lenght rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</has_lenght>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">362.7069071450142</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">92.41594406716877</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">23.75124605714789</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pringles inside closet</has_spatial_location>
+  <is_reachable rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</is_reachable>
+</Object>
+
+<Object rdf:about="#beer">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">335.26745668075336</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">104.8662257260339</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.000061084852115</hold_pose_z>
+  <has_spatial_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">beer right pringles</has_spatial_location>
+</Object>
+
+<Arm rdf:about="#tiago_arm">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago"/>
   <has_payload rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.0</has_payload>
-  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.87</has_reach>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">87.0</has_reach>
 </Arm>
 
-<Gripper rdf:about="#tiago_1_gripper">
+<Gripper rdf:about="#tiago_gripper">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1"/>
+  <part_of rdf:resource="#tiago"/>
 </Gripper>
 
-<Finger rdf:about="#tiago_1_finger_R">
+<Finger rdf:about="#tiago_finger_R">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1_gripper"/>
-  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.044</has_reach>
+  <part_of rdf:resource="#tiago_gripper"/>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.3999999999999995</has_reach>
 </Finger>
 
-<Finger rdf:about="#tiago_1_finger_L">
+<Finger rdf:about="#tiago_finger_L">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1_gripper"/>
-  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.044</has_reach>
+  <part_of rdf:resource="#tiago_gripper"/>
+  <has_reach rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.3999999999999995</has_reach>
 </Finger>
 
-<LiftTorso rdf:about="#tiago_1_torso">
+<LiftTorso rdf:about="#tiago_torso">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1"/>
+  <part_of rdf:resource="#tiago"/>
 </LiftTorso>
 
-<MobileBase rdf:about="#tiago_1_base">
+<MobileBase rdf:about="#tiago_base">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1"/>
-  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.019624804806454337</hold_pose_x>
-  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0076880775257815405</hold_pose_y>
-  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0010873095709225677</hold_pose_z>
+  <part_of rdf:resource="#tiago"/>
+  <hold_pose_x rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.017598435645913013</hold_pose_x>
+  <hold_pose_y rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5185229219568</hold_pose_y>
+  <hold_pose_z rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.11430977672257925</hold_pose_z>
   <has_max_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</has_max_speed>
 </MobileBase>
 
-<Head rdf:about="#tiago_1_head">
+<Head rdf:about="#tiago_head">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <part_of rdf:resource="#tiago"/>
 </Head>
 
-<BodyPart rdf:about="#tiago_1_cam">
+<BodyPart rdf:about="#tiago_cam">
   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-  <part_of rdf:resource="#tiago_1_head"/>
+  <part_of rdf:resource="#tiago_head"/>
 </BodyPart>
 
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Table">
-  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+<Action rdf:about="#pick_up_place_task">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_goal rdf:resource="#aruco_cube"/>
+  <is_afforded_by rdf:resource="#tiago"/>
+  <has_participant rdf:resource="#arm_1_joint"/>
+  <has_participant rdf:resource="#arm_2_joint"/>
+  <has_participant rdf:resource="#arm_3_joint"/>
+  <has_participant rdf:resource="#arm_4_joint"/>
+  <has_participant rdf:resource="#arm_7_joint"/>
+  <has_participant rdf:resource="#arm_5_joint"/>
+  <has_participant rdf:resource="#gripper_right_finger_joint"/>
+  <has_participant rdf:resource="#gripper_left_finger_joint"/>
+  <has_participant rdf:resource="#torso_lift_joint"/>
+  <has_movement rdf:resource="#state_1"/>
+  <has_movement rdf:resource="#state_2"/>
+  <has_movement rdf:resource="#state_3"/>
+  <has_movement rdf:resource="#state_4"/>
+  <has_movement rdf:resource="#state_5"/>
+  <has_movement rdf:resource="#state_6"/>
+  <has_movement rdf:resource="#state_7"/>
+  <has_movement rdf:resource="#state_8"/>
+  <has_movement rdf:resource="#state_9"/>
+  <has_movement rdf:resource="#state_10"/>
+  <has_movement rdf:resource="#state_11"/>
+  <has_movement rdf:resource="#state_12"/>
+  <has_movement rdf:resource="#state_13"/>
+  <has_movement rdf:resource="#state_14"/>
+  <has_movement rdf:resource="#state_15"/>
+  <has_movement rdf:resource="#state_16"/>
+  <has_movement rdf:resource="#state_17"/>
+  <has_movement rdf:resource="#state_18"/>
+  <has_movement rdf:resource="#state_19"/>
+  <has_movement rdf:resource="#state_20"/>
+  <has_movement rdf:resource="#state_21"/>
+  <has_movement rdf:resource="#state_22"/>
+  <has_movement rdf:resource="#state_23"/>
+  <has_movement rdf:resource="#state_24"/>
+  <has_movement rdf:resource="#state_25"/>
+  <has_movement rdf:resource="#state_26"/>
+  <has_movement rdf:resource="#state_27"/>
+  <has_movement rdf:resource="#state_28"/>
+  <has_movement rdf:resource="#state_29"/>
+  <has_movement rdf:resource="#state_30"/>
+  <has_movement rdf:resource="#state_31"/>
+  <has_movement rdf:resource="#state_32"/>
+  <has_movement rdf:resource="#state_33"/>
+  <has_movement rdf:resource="#state_34"/>
+  <has_movement rdf:resource="#state_35"/>
+  <has_movement rdf:resource="#state_36"/>
+  <has_movement rdf:resource="#state_37"/>
+  <has_movement rdf:resource="#state_38"/>
+  <has_movement rdf:resource="#state_39"/>
+  <has_movement rdf:resource="#state_40"/>
+  <has_movement rdf:resource="#state_41"/>
+  <has_movement rdf:resource="#state_42"/>
+  <has_movement rdf:resource="#state_43"/>
+  <has_movement rdf:resource="#state_44"/>
+  <has_movement rdf:resource="#state_45"/>
+  <has_movement rdf:resource="#state_46"/>
+  <has_movement rdf:resource="#state_47"/>
+  <has_movement rdf:resource="#state_48"/>
+  <has_movement rdf:resource="#state_49"/>
+  <has_movement rdf:resource="#state_50"/>
+  <has_movement rdf:resource="#state_51"/>
+  <has_movement rdf:resource="#state_52"/>
+  <has_movement rdf:resource="#state_53"/>
+  <has_movement rdf:resource="#state_54"/>
+</Action>
+
+<Joint rdf:about="#arm_1_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">torso_lift_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_1_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#arm_2_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_1_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_2_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#arm_3_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_2_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_3_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#arm_4_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_3_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_4_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#arm_7_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_6_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_7_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#arm_5_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_4_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">arm_5_link</has_child_link>
+</Joint>
+
+<Joint rdf:about="#gripper_right_finger_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</has_child_link>
+</Joint>
+
+<Joint rdf:about="#gripper_left_finger_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</has_child_link>
+</Joint>
+
+<Joint rdf:about="#torso_lift_joint">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_parent_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">torso_fixed_link</has_parent_link>
+  <has_child_link rdf:datatype="http://www.w3.org/2001/XMLSchema#string">torso_fixed_link</has_child_link>
+</Joint>
+
+<State rdf:about="#state_1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.000617252936000016</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.20999324950933396</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.022741899417682378</has_effort>
+</State>
+
+<State rdf:about="#state_2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.005156734515462887</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3446415018152198</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">16.11665797707996</has_effort>
+</State>
+
+<State rdf:about="#state_3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.004146625987940317</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.19964977444296927</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.052520299477258</has_effort>
+</State>
+
+<State rdf:about="#state_4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.6864518716119368</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.37663657374135084</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-6.873771119583836</has_effort>
+</State>
+
+<State rdf:about="#state_5">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03929164802607023</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.827840201901637e-05</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.19670955649541283</has_effort>
+</State>
+
+<State rdf:about="#state_6">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.005857495038279925</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.5719998302305953</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0018508932143066</has_effort>
+</State>
+
+<State rdf:about="#state_7">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.558213848942629e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.045001116847532795</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0027649747033758887</has_effort>
+</State>
+
+<State rdf:about="#state_8">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0007131917407221869</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04492635689794521</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.14697429823488928</has_effort>
+</State>
+
+<State rdf:about="#state_9">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.4778657524137712e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.33980562664358754</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">174.9366395692665</has_effort>
+</State>
+
+<State rdf:about="#state_10">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.046169351558154</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1067016539034773</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.03821257925363731</has_effort>
+</State>
+
+<State rdf:about="#state_11">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.07837518256241051</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.035193230840760314</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">19.04951267666715</has_effort>
+</State>
+
+<State rdf:about="#state_12">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.677156177903998e-06</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.999569710082648</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.2989546652596435</has_effort>
+</State>
+
+<State rdf:about="#state_13">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-9.129800141529341e-06</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.499500730765977</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.5529564983469455</has_effort>
+</State>
+
+<State rdf:about="#state_14">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.4069059056777728e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6.301235434769126e-06</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0032044803622669695</has_effort>
+</State>
+
+<State rdf:about="#state_15">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.880573352505582e-06</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.5700505430956628</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.026223801168057687</has_effort>
+</State>
+
+<State rdf:about="#state_16">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.00011555154881431363</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04500061370830008</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0015426764518045033</has_effort>
+</State>
+
+<State rdf:about="#state_17">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.048127111518698085</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04493892577027079</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.12030241091026683</has_effort>
+</State>
+
+<State rdf:about="#state_18">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.012532405685257892</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3298964472676011</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">161.63727553544737</has_effort>
+</State>
+
+<State rdf:about="#state_19">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.43818113197708364</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.286506533976695</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.35751210589819504</has_effort>
+</State>
+
+<State rdf:about="#state_20">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.029874175663510492</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9772772263553335</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.661745390769463</has_effort>
+</State>
+
+<State rdf:about="#state_21">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.24489404674462747</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.37557485250926703</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.7216052992577695</has_effort>
+</State>
+
+<State rdf:about="#state_22">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.00034077218142294745</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.210149558656452</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.5917458283401476</has_effort>
+</State>
+
+<State rdf:about="#state_23">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5.174152559657766e-06</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.320250089297228</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.010160601463269485</has_effort>
+</State>
+
+<State rdf:about="#state_24">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.15447199286774171</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.36116643092159073</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.36663725176678746</has_effort>
+</State>
+
+<State rdf:about="#state_25">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.00010061318921355351</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.037997881428932</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.004152460342535247</has_effort>
+</State>
+
+<State rdf:about="#state_26">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-6.899006992826679e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03800248276761411</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.004978712957459663</has_effort>
+</State>
+
+<State rdf:about="#state_27">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.323517048796489e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3202988179873282</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">175.02176213544814</has_effort>
+</State>
+
+<State rdf:about="#state_28">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-6.380811356099269e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.7230468531371823</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0022280952238547007</has_effort>
+</State>
+
+<State rdf:about="#state_29">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0001619660303485641</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0169975109497766</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">11.66033415056728</has_effort>
+</State>
+
+<State rdf:about="#state_30">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.00022814167689162224</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.18658613061582408</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.3979235270495967</has_effort>
+</State>
+
+<State rdf:about="#state_31">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.07991185653459394</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.256782350095456</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.2646431286982978</has_effort>
+</State>
+
+<State rdf:about="#state_32">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.0554715100319204e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.3202660657906531</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.008934789482529465</has_effort>
+</State>
+
+<State rdf:about="#state_33">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.2302014261027454</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4133658364416508</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.6088123646625582</has_effort>
+</State>
+
+<State rdf:about="#state_34">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.12010004896496132</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03869477361281287</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</has_effort>
+</State>
+
+<State rdf:about="#state_35">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.00935926452234321</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.014514062818717213</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9818992556367596</has_effort>
+</State>
+
+<State rdf:about="#state_36">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.02983323430838063</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.31191376637309676</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">204.33783395320486</has_effort>
+</State>
+
+<State rdf:about="#state_37">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.5262691810618569</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3484132045819468</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.5186895219479204</has_effort>
+</State>
+
+<State rdf:about="#state_38">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.06589106696810941</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.19923641441326012</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">21.089683642144113</has_effort>
+</State>
+
+<State rdf:about="#state_39">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.1563653805165948</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.4151786460918636</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-5.161262739083073</has_effort>
+</State>
+
+<State rdf:about="#state_40">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.15304597946636</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9094024858798138</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-6.829595290928874</has_effort>
+</State>
+
+<State rdf:about="#state_41">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0512791074320228</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.24245507221651597</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.06980292887470278</has_effort>
+</State>
+
+<State rdf:about="#state_42">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4043367077905634</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7612231525895652</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.34615111311571256</has_effort>
+</State>
+
+<State rdf:about="#state_43">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.05989758910963244</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0152610858289612</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.5232737163412687</has_effort>
+</State>
+
+<State rdf:about="#state_44">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0008244314132044375</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.015005457686563172</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.01069723935393646</has_effort>
+</State>
+
+<State rdf:about="#state_45">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.7933453869688986e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.33987484592868517</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">174.51086080312288</has_effort>
+</State>
+
+<State rdf:about="#state_46">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_1_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.0005119870862400101</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.5419895779398196</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.034214075064216365</has_effort>
+</State>
+
+<State rdf:about="#state_47">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_2_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.691062219817319e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10457402248295722</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.008612680001686</has_effort>
+</State>
+
+<State rdf:about="#state_48">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_3_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0030321991956225453</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.498381455294684</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.236102220508033</has_effort>
+</State>
+
+<State rdf:about="#state_49">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_4_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.00023604199542064298</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.6214216670206616</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.7549438942967601</has_effort>
+</State>
+
+<State rdf:about="#state_50">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_7_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.2286473530925745e-07</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.6862261157934206</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.010989062147942466</has_effort>
+</State>
+
+<State rdf:about="#state_51">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#arm_5_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0807024300253426e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.8019651565910912</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.8879331129145712</has_effort>
+</State>
+
+<State rdf:about="#state_52">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_right_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-2.3076100355160834e-06</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03798935252440912</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.02129419807472832</has_effort>
+</State>
+
+<State rdf:about="#state_53">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#gripper_left_finger_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0009439826449856e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03801002431362505</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-0.020048878137557402</has_effort>
+</State>
+
+<State rdf:about="#state_54">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_joint rdf:resource="#torso_lift_joint"/>
+  <has_velocity rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-1.258670012554776e-05</has_velocity>
+  <has_position rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3398743127353599</has_position>
+  <has_effort rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">175.02358197318324</has_effort>
+</State>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Arm">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
 </rdf:Description>
 
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Can">
-  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#PhysicalObject"/>
 </rdf:Description>
-
-<Tiag:Robot rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1"/>
 
 <rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#LiftTorso">
-  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Wheels">
-  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#MobileBase">
-  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
-</rdf:Description>
-
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Gripper">
   <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
 </rdf:Description>
 
@@ -330,46 +1031,253 @@
   <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
 </rdf:Description>
 
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Gripper">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Wheels">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
+</rdf:Description>
+
 <rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger">
   <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
 </rdf:Description>
 
-<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Arm">
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#MobileBase">
   <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#BodyPart"/>
 </rdf:Description>
 
-<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_arm">
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Can">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#PhysicalObject"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Table">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#GraspForce">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Manipulation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Movement">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Manipulation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Action">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Manipulation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Trajectory">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Manipulation"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#DPose">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Geometric"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Surface">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Geometric"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#SpatialLocation">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Geometric"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#PhysicalObject"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Joint">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#PhysicalObject"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Link">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#PhysicalObject"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Tiago">
+  <rdfs:subClassOf rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot"/>
+</rdf:Description>
+
+<Tiag:Gripper rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_gripper"/>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_arm">
   <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
 </Tiag:Arm>
 
-<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_finger_R">
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#closet"/>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_finger_R">
   <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
 </Tiag:Arm>
 
-<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_torso"/>
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_7_joint"/>
 
-<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_finger_L">
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_45"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_44"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_47"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_46"/>
+
+<Tiag:BodyPart rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago">
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Tiago"/>
+  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
+</Tiag:BodyPart>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_49"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_48"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tv"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_41"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_40"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_43"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_42"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#pringles"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#gripper_left_finger_joint"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_2"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_3"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_1"/>
+
+<Tiag:Arm rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_finger_L">
   <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Finger"/>
 </Tiag:Arm>
 
-<Tiag:Head rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_head">
-  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot"/>
-</Tiag:Head>
-
-<Tiag:Can rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#can_1"/>
-
-<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_base">
+<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_base">
   <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Object"/>
   <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#MobileBase"/>
 </Tiag:LiftTorso>
 
-<Tiag:Table rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#table_1"/>
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_34"/>
 
-<Tiag:BodyPart rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_cam"/>
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_33"/>
 
-<Tiag:Gripper rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_1_gripper">
-  <rdf:type rdf:resource="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#Robot"/>
-</Tiag:Gripper>
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_36"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_35"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_38"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_37"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_4_joint"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_39"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_30"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_1_joint"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#gripper_right_finger_joint"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_32"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#beer"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_31"/>
+
+<Tiag:Table rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#table1"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#aruco_cube"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_2_joint"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#lamp"/>
+
+<Tiag:Head rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_head"/>
+
+<Tiag:Action rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#pick_up_place_task"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_6"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_23"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_5_joint"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_7"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_22"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_4"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_25"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_5"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_24"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_27"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_26"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_8"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_29"/>
+
+<Tiag:LiftTorso rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_torso"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_9"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_28"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_21"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_20"/>
+
+<Tiag:Can rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#cocacola"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_19"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#arm_3_joint"/>
+
+<Tiag:Object rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#bookshelf"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_12"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_11"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_14"/>
+
+<Tiag:BodyPart rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#tiago_cam"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_13"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_16"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_15"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_18"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_17"/>
+
+<Tiag:Joint rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#torso_lift_joint"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_50"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_52"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_51"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_10"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_54"/>
+
+<Tiag:State rdf:about="file:////tmp//root/catkin_ws/src/interface/owl/Tiago.owl#state_53"/>
 
 
 </rdf:RDF>
