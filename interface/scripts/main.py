@@ -3,7 +3,7 @@
 #ontologiey related
 from owlready2 import *
 from get_model import *
-from query import q1,q2,q3,q4,q5
+from query import q1,q2,q3,q4,q5,q6,q7,q8
 
 
 if __name__ == '__main__':
@@ -13,6 +13,9 @@ if __name__ == '__main__':
     q3()
     q4()
     q5()
+    q6()
+    q7()
+    q8()
    
 
 
