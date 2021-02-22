@@ -81,6 +81,9 @@ with new_onto:
     DPose.comment = ["3d pose object"]           
     class SpatialLocation(Geometric):pass
     SpatialLocation.comment = ["Spatial location of an object w.r.t another object in natural language"]
+    class part_of(ObjectProperty):
+        domain = [PhysicalObject]
+        range = [BodyPart]
     #class part_of(BodyPart >> Robot, TransitiveProperty): pass
     #lass base_link_of(Thing >> BodyPart, TransitiveProperty): pass
     #lass end_link_of(Thing >> BodyPart, TransitiveProperty): pass
@@ -139,7 +142,7 @@ with new_onto:
             self.x = x #upper left x
             self.y = y #upper left y
             self.w = w #width
-            self.h = h # height
+            self.h = h #height
     class has_grasp_region(ObjectProperty):
         domain = [Object]
         range = [DPose]
@@ -217,9 +220,9 @@ class SpatialReasoner():
         # check if diff on z is less than predefined value
         z1 = obj1.hold_pose_z
         z2 = obj2.hold_pose_z
-        h2 = obj2.has_height
+        h2 = obj2.has_height if obj2.has_height else None
         if z1>z2:# top from bottom is z1
-            if z1-z2-h2 <= TOP_CST: 
+            if h2 and abs(z1-z2-h2) <= TOP_CST: 
                 return True
         return False
 
@@ -233,6 +236,10 @@ class SpatialReasoner():
             return  format(obj1.name) +" right "+ format(obj2.name)
         elif self.rightTo(obj2,obj1):
             return  format(obj2.name) +" right "+ format(obj1.name)
+        elif self.inside(obj1,obj2):
+            return  format(obj1.name) +" inside "+ format(obj2.name)
+        elif self.inside(obj2,obj1):
+            return  format(obj2.name) +" inside "+ format(obj1.name)
         elif self.leftTo(obj1,obj2):
             return  format(obj1.name) +" left "+ format(obj2.name)
         elif self.leftTo(obj2,obj1):
@@ -254,8 +261,8 @@ class SpatialReasoner():
         y2 = obj2.hold_pose_y
 
         if w1<w2 and h1<h2: # obj1 can be inside obj2 but it is really inside??
-            if x1> x2+w2/2 and x1 < x2-w2/2: # x1 in width range ??
-                if y1 > y2 + l2/2 and y1 < y2-l2/2: # y1 in lenght range?
+            if x1 > x2+w2/2 and x1 > x2-w2/2: # x1 in width range ??
+                if y1 > y2 + l2/2 and y1 > y2-l2/2: # y1 in lenght range?
                     return True
         return False
 
@@ -286,16 +293,17 @@ class SpatialReasoner():
                 return True
         return False
     
-    def is_reachable(self,onto,robot: Robot,obj:Object) -> bool:
+    def is_reachable(self,robot: Robot,arm:BodyPart,obj:Object) -> bool:
         #check if the robot can reach the object .. is robot reach >= dist(robot,object) ??
-        arm = None
-        reach = None
-        arm = str(onto.search(is_a=new_onto.Arm,part_of=robot)[0])
-        reach = onto[arm.split('.')[-1]].has_reach
-        base = str(onto.search(is_a=new_onto.MobileBase,part_of=robot)[0])
-        robotX = onto[base.split('.')[-1]].hold_pose_x
-        robotY = onto[base.split('.')[-1]].hold_pose_y
-        robotZ = onto[base.split('.')[-1]].hold_pose_z
+        #arm = None
+        #reach = None
+        #arm = (onto.search(is_a=new_onto.Arm,part_of=robot))
+        #print("---",format(arm))
+        reach = arm.has_reach
+        #base = str(onto.search(is_a=new_onto.MobileBase,part_of=robot)[0])
+        robotX = robot.hold_pose_x
+        robotY = robot.hold_pose_y
+        robotZ = robot.hold_pose_z
         objectX,objectY,objectZ = obj.hold_pose_x,obj.hold_pose_y,obj.hold_pose_z
         d = distance(robotX,robotY,robotZ,objectX,objectY,objectZ)
         if d <= reach :
@@ -320,26 +328,34 @@ def pplist(list):
     return ' '.join(['%2.3f'%x for x in list])
 
 #creating instances
-tiago_1 = Tiago("tiago_1")
-table_1 = Table("table_1")
-cocacola_1 = Can("cocacola_1")
-aruco_cube_1 = Object("aruco_cube_1")
+tiago = Tiago("tiago")
+table1 = Table("table1")
+cocacola = Can("cocacola")
+aruco_cube = Object("aruco_cube")
+tv = Object("tv")
+lamp = Object("lamp")
+bookshelf = Object("bookshelf")
+closet = Object("closet")
+pringles = Object("pringles")
+beer = Object("beer")
+
+individuals = [tiago,table1,cocacola,aruco_cube,tv,lamp,bookshelf,closet,pringles,beer]
 
 #parts of Tiago
-tiago_1_Arm = Arm("tiago_1_arm",part_of = [tiago_1],has_payload=3.0,has_reach=0.87)
-tiago_1_Gripper = Gripper("tiago_1_gripper",part_of=[tiago_1])
-tiago_1_Finger_R = Finger("tiago_1_finger_R",part_of = [tiago_1_Gripper],has_reach=0.044)
-tiago_1_Finger_L = Finger("tiago_1_finger_L",part_of = [tiago_1_Gripper],has_reach=0.044)
-tiago_1_Torso = LiftTorso("tiago_1_torso",part_of = [tiago_1],has_lift = 0.35)
-tiago_1_Base = MobileBase("tiago_1_base",part_of = [tiago_1],has_max_speed = 1)
-tiago_1_Head = Head("tiago_1_head",part_of=[tiago_1])
-tiago_1_Cam = BodyPart("tiago_1_cam", part_of = [tiago_1_Head])
+tiago_Arm = Arm("tiago_arm",part_of = [tiago],has_payload=3.0,has_reach=to_cm(0.87))
+tiago_Gripper = Gripper("tiago_gripper",part_of=[tiago])
+tiago_Finger_R = Finger("tiago_finger_R",part_of = [tiago_Gripper],has_reach=to_cm(0.044))
+tiago_Finger_L = Finger("tiago_finger_L",part_of = [tiago_Gripper],has_reach=to_cm(0.044))
+tiago_Torso = LiftTorso("tiago_torso",part_of = [tiago],has_lift = 0.35)
+tiago_Base = MobileBase("tiago_base",part_of = [tiago],has_max_speed = 1)
+tiago_Head = Head("tiago_head",part_of=[tiago])
+tiago_Cam = BodyPart("tiago_cam", part_of = [tiago_Head])
 
 
 #set object properties
 #listening to gazebo model states topic
 rospy.init_node('listener', anonymous=True)
-models = ["tiago","table1","aruco_cube","cocacola","beer","closet","tv","lamp","pringles"]
+models = ["tiago","table1","aruco_cube","cocacola","beer","closet","tv","lamp","pringles","bookshelf"]
 gz_model = GazeboModel(models)
 
 poses = {}
@@ -359,27 +375,47 @@ while not are_models_ready:
 sr = SpatialReasoner() 
 
 if  are_models_ready:
-    cocacola_1.hold_pose_x = (poses["cocacola"].position.x)
-    cocacola_1.hold_pose_y = (poses["cocacola"].position.y)
-    cocacola_1.hold_pose_z = (poses["cocacola"].position.z)
-    table_1.hold_pose_x = (poses["table1"].position.x)
-    table_1.hold_pose_y = (poses["table1"].position.y)
-    table_1.hold_pose_z = (poses["table1"].position.z)
-    tiago_1_Base.hold_pose_x = (poses["tiago"].position.x)
-    tiago_1_Base.hold_pose_y = (poses["tiago"].position.y)
-    tiago_1_Base.hold_pose_z = (poses["tiago"].position.z)
-    table_1.has_height =  (poses["cocacola"].position.z)       
+
+    for ind in individuals: 
+        ind.hold_pose_x = to_cm(poses[ind.name].position.x)
+        ind.hold_pose_y = to_cm(poses[ind.name].position.y)
+        ind.hold_pose_z = to_cm(poses[ind.name].position.z)
+    
+    tiago_Base.hold_pose_x = to_cm(poses["tiago"].position.x)
+    tiago_Base.hold_pose_y = to_cm(poses["tiago"].position.y)
+    tiago_Base.hold_pose_z = to_cm(poses["tiago"].position.z)
+
+    #dim of some objects
+    table1.has_height =  to_cm(poses["cocacola"].position.z)
+    bookshelf.has_height =  to_cm(poses["tv"].position.z)
+    closet.has_height = to_cm(2)#by guess
+    closet.has_width = to_cm(0.8)
+    closet.has_lenght = to_cm(0.02)
+    pringles.has_height = to_cm(0.01)
+    pringles.has_lenght = to_cm(0.01)
+    pringles.has_width = to_cm(0.01)
 
     #spatial relations
-    cocacola_1.has_spatial_location = sr.spatialSituation(cocacola_1,table_1)
-    table_1.has_spatial_location = sr.spatialSituation(table_1,cocacola_1)
-    print(cocacola_1.has_spatial_location)
+    cocacola.has_spatial_location = sr.spatialSituation(cocacola,table1)
+    table1.has_spatial_location = sr.spatialSituation(table1,cocacola)
+    aruco_cube.has_spatial_location = sr.spatialSituation(table1,aruco_cube)
+    tv.has_spatial_location = sr.spatialSituation(bookshelf,tv)
+    lamp.has_spatial_location = sr.spatialSituation(tv,lamp)
+    pringles.has_spatial_location = sr.spatialSituation(pringles,closet)
+    beer.has_spatial_location = sr.spatialSituation(pringles,beer)
+    print(beer.has_spatial_location)
+    print("---")
+
+    #reacheablity
+    aruco_cube.is_reachable = sr.is_reachable(tiago,tiago_Arm,aruco_cube)
+    pringles.is_reachable = sr.is_reachable(tiago,tiago_Arm,pringles)
+    print(aruco_cube.is_reachable)
     print("---")
 
 
 grasp_task = Action("pick_up_place_task")
-grasp_task.is_afforded_by.append(tiago_1)
-grasp_task.has_goal.append(aruco_cube_1)
+grasp_task.is_afforded_by.append(tiago)
+grasp_task.has_goal.append(aruco_cube)
 
 #populating ontology with joint's states
 joint_names = ["arm_1_joint",
@@ -428,7 +464,7 @@ states = []
 
 
 
-while(1 and counter <20 ):
+while(1 and counter <10 ):
     for joint_name in joint_names:
         (name,position, velocity, effort) = call_return_joint_states([joint_name])
         print ("Joint name:",name)
@@ -443,7 +479,7 @@ while(1 and counter <20 ):
         state.has_position = position[0]
         state.has_effort = effort[0]
         state.has_velocity = velocity[0]
-        state.is_movement_of.append(grasp_task)
+        grasp_task.has_movement.append(state)
         counter+=1
 
 
