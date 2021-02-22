@@ -464,7 +464,7 @@ states = []
 
 
 
-while(1 and counter <10 ):
+while(1 and counter <50 ):
     for joint_name in joint_names:
         (name,position, velocity, effort) = call_return_joint_states([joint_name])
         print ("Joint name:",name)
