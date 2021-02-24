@@ -27,7 +27,7 @@ Contains:
 - [Joint states listener service](joint_states_listener/nodes/joint_states_listener.py)
 
 ## Authors
-- Kayode @ka20@ka-201668
+- Kayode @ka-201668
 
 ## License
 What license is applied to this repository in case of open sourcing.
