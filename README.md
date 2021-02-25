@@ -37,4 +37,6 @@ What license is applied to this repository in case of open sourcing.
 
 ## Report 
 
-[ws20_adje_knowrob report](https://livettu-my.sharepoint.com/:w:/g/personal/kaadje_ttu_ee/ERrFdVxNoqJOlYHH3NnGaskBu4PH0Y5OBS0LxoSwhDNJ6g?rtime=fa5uHK7V2Eg)
+[Project report](proj-iki-wsadje.pdf) 
+
+[Final Presentation](IKI-Final-Presentation.pdf)
