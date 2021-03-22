@@ -2,7 +2,7 @@ version: '2.3'
 services:
   wsadje:
     container_name: wsadje
-    image: iki-onto
+    image: iki-onto:master
     environment:
       WAIT_FOR_ROSCORE: 1
       #ROS_IP: $ROS_IP

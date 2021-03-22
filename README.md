@@ -27,16 +27,13 @@ Contains:
 - [Joint states listener service](joint_states_listener/nodes/joint_states_listener.py)
 
 ## Authors
-- Kayode @ka-201668
+- Kayode @Ahadilou
 
 ## License
 What license is applied to this repository in case of open sourcing.
 
-## Problems and solutions
-[Problems and solutions](https://fbe-gitlab.hs-weingarten.de/prj-iki-robotics/orga/robolab-wiki/wikis/Problems-And-Solutions)
+
 
 ## Report 
 
 [Project report](proj-iki-wsadje.pdf) 
-
-[Final Presentation](IKI-Final-Presentation.pdf)

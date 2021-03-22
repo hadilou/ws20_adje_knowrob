@@ -1,7 +1,8 @@
 ARG ROS_DISTRO=melodic
 
 #available locally, change to docker registry if needed
-ARG DOCKER_BASE_IMAGE=fbe-dockerreg.rwu.de/prj-iki-robotics/orga/ros-docker-base
+#you need a ros docker image, this one here is local
+ARG DOCKER_BASE_IMAGE=ros-docker-base
 
 FROM $DOCKER_BASE_IMAGE:$ROS_DISTRO
 
@@ -44,7 +45,7 @@ RUN rosdep update
 
 WORKDIR /root/catkin_ws/src/
 
-RUN git clone git@fbe-gitlab.hs-weingarten.de:stud-iki/prj-master/ws20_adje_knowrob.git
+RUN git clone git@github.com:hadilou/ws20_adje_knowrob.git
 RUN rm -rf ws20_adje_knowrob/docker
 
 WORKDIR /root/catkin_ws
