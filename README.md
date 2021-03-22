@@ -36,4 +36,4 @@ What license is applied to this repository in case of open sourcing.
 
 ## Report 
 
-[Project report](proj-iki-wsadje.pdf) 
+[Project presentation](IKI-Final-Presentation.pdf)
